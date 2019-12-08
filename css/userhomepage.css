@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Solway&display=swap');
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: thistle;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.body {
+  width: 100%;
+  background-color: thistle;
+}
+
+/*.logo {
+    position: absolute;
+    padding-top: 25px;
+    padding-left: 25px;
+    width: 150px;
+    height: 150px;
+}*/
+
+/* The side navigation menu */
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 30%;
+  background-color: #e7e7e7;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  font-family: Satisfy;
+  font-size: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Sidebar links */
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+
+.sidebar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Links on mouse-over */
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {
+    float: left;
+  }
+  div.content {
+    margin-left: 0;
+  }
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+.orders {
+  width: 70%;
+  height: 100%;
+  margin-left: 30%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.content {
+  font-size: 40px;
+  font-family: Solway;
+}
+
+.canteenselection {
+  width: auto;
+  text-align: center;
+  font-size: 40px;
+  font-family: Solway;
+  height: 50px;
+  font-family: Solway;
+  text-align: left;
+  font-size: 40px;
+  padding: 0 80px;
+}
+
+.deleteaccount {
+  background-color: #e7e7e7; 
+  color: black;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: Solway;
+  width: 250px;
+  height: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  border: 2px solid rgba(00, 00, 00, 0.6);
+  box-shadow: 0px 2px 2px 2px rgba(00, 00, 00, 0.4);
+  align-content: center;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.paynow {
+  background-color: #e7e7e7; 
+  color: black;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: Solway;
+  width: 250px;
+  height: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  border: 2px solid rgba(00, 00, 00, 0.6);
+  box-shadow: 0px 2px 2px 2px rgba(00, 00, 00, 0.4);
+  align-content: center;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.viewcart {
+  background-color: #e7e7e7; 
+  color: black;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: Solway;
+  width: 250px;
+  height: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  border: 2px solid rgba(00, 00, 00, 0.6);
+  box-shadow: 0px 2px 2px 2px rgba(00, 00, 00, 0.4);
+  align-content: center;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.addtocart {
+  background-color: #e7e7e7; 
+  color: black;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: Solway;
+  width: 100px;
+  height: 30px;
+  margin-left: 50px;
+  margin-right: 50px;
+  border: 2px solid rgba(00, 00, 00, 0.6);
+  box-shadow: 0px 2px 2px 2px rgba(00, 00, 00, 0.4);
+  align-content: center;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.canteenmenu {
+  padding: 20px;
+  border: 2px solid rgba(00, 00, 00, 0.6);
+  box-shadow: 0px 2px 2px 2px rgba(00, 00, 00, 0.4);
+  align-content: center;
+  box-sizing: border-box;
+  border-radius: 8px;
+  font-family: Solway;
+  font-size: 20px;
+}
+
+.footer {
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  bottom: 0;
+  left: 0px;
+  background: #000000;
+  font-family: Solway;
+  color: #FFFFFF;
+  line-height: 80px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+}
