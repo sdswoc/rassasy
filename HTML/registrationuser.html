@@ -4,12 +4,12 @@
         <title>
             Rassasy: Registration
         </title>
-        <link rel="stylesheet" href="/css/registrationuser.css">
+        <link rel="stylesheet" href="../css/registrationuser.css">
         </head>
     <body>
+        <div class="registration-user-container">
         <div class="header">User Registration</div>
         <div class="body">
-            <div><img class="background" src="/Images/bg.jpg"></div>
             <div><img class="logo" src="/Images/images.jpeg" alt=""></div>
                 <div class="registration">
                 <form method="POST">
@@ -17,7 +17,7 @@
                     Enrollment No: <input type="text" name="enrollno"><br>
                     Username: <input type="text" name="username"><br>
                     Password: <input type="password" name="password"><br>
-                    Bhawan: <select id = "bhawan">
+                    Bhawan: <select class="bhawan" id = "bhawan">
                         <option value = "1">one</option>
                         <option value = "2">two</option>
                         <option value = "3">three</option>
@@ -27,9 +27,10 @@
                     Email Address: <input type="email" name="email"><br>
                     <input type="submit" value="Register" formaction="">
                 </form>
-                <a href="login.html">Already have an account? Login.</a>
+                <a href="/HTML/login.html">Already have an account? Login.</a>
         
             </div>
         </div>   
+        </div>
     </body>
 </html>

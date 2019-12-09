@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Solway&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Solway&display=swap");
 body {
   margin: 0px;
   padding: 0px;
@@ -25,6 +25,11 @@ body {
 
 /* The side navigation menu */
 
+.header {
+  font-family: Satisfy;
+  font-size: 70px;
+}
+
 .sidebar {
   margin: 0;
   padding: 0;
@@ -46,14 +51,14 @@ body {
 .sidebar a {
   display: block;
   color: black;
-  padding: 16px;
+  padding: 20px 0;
   text-decoration: none;
 }
 
 /* Active/current link */
 
 .sidebar a.active {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 
@@ -65,12 +70,6 @@ body {
 }
 
 /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
-
-div.content {
-  margin-left: 200px;
-  padding: 1px 16px;
-  height: 1000px;
-}
 
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 
@@ -94,21 +93,57 @@ div.content {
   .sidebar a {
     text-align: center;
     float: none;
+    padding: 0;
+  }
+
+  .orders {
+    width: 100vw !important;
+    margin-left: 0 !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .content {
+    font-size: 14px;
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    width: 150px !important;
+  }
+
+  input[type="submit"] {
+    width: auto !important;
+  }
+
+  .footer {
+    flex-direction: column !important;
   }
 }
 
 .orders {
   width: 70%;
-  height: 100%;
   margin-left: 30%;
   display: flex;
   flex-direction: column;
-  padding: 20px 0;
 }
 
 .content {
-  font-size: 40px;
+  font-size: 20px;
+  height: auto;
   font-family: Solway;
+  padding: 20px 20px;
+  text-align: left;
+}
+
+.form {
+  align-content: space-between;
+  display: flex;
+  flex-direction: column;
 }
 
 .canteenselection {
@@ -124,16 +159,13 @@ div.content {
 }
 
 .deleteaccount {
-  background-color: #e7e7e7; 
+  width: 180px;
+  background-color: #e7e7e7;
   color: black;
   text-align: center;
   font-size: 20px;
   cursor: pointer;
   font-family: Solway;
-  width: 250px;
-  height: 50px;
-  margin-left: 50px;
-  margin-right: 50px;
   border: 2px solid rgba(00, 00, 00, 0.6);
   box-shadow: 0px 2px 2px 2px rgba(00, 00, 00, 0.4);
   align-content: center;
@@ -142,7 +174,7 @@ div.content {
 }
 
 .paynow {
-  background-color: #e7e7e7; 
+  background-color: #e7e7e7;
   color: black;
   text-align: center;
   font-size: 20px;
@@ -160,34 +192,30 @@ div.content {
 }
 
 .viewcart {
-  background-color: #e7e7e7; 
+  background-color: #e7e7e7;
   color: black;
   text-align: center;
   font-size: 20px;
   cursor: pointer;
   font-family: Solway;
-  width: 250px;
+  width: 200px;
   height: 50px;
-  margin-left: 50px;
-  margin-right: 50px;
   border: 2px solid rgba(00, 00, 00, 0.6);
   box-shadow: 0px 2px 2px 2px rgba(00, 00, 00, 0.4);
   align-content: center;
   box-sizing: border-box;
   border-radius: 8px;
+  margin: 20px;
 }
 
 .addtocart {
-  background-color: #e7e7e7; 
+  background-color: #e7e7e7;
   color: black;
   text-align: center;
-  font-size: 20px;
+  font-size: 16px;
   cursor: pointer;
   font-family: Solway;
-  width: 100px;
   height: 30px;
-  margin-left: 50px;
-  margin-right: 50px;
   border: 2px solid rgba(00, 00, 00, 0.6);
   box-shadow: 0px 2px 2px 2px rgba(00, 00, 00, 0.4);
   align-content: center;
@@ -196,27 +224,80 @@ div.content {
 }
 
 .canteenmenu {
-  padding: 20px;
+  width: 100%;
+  padding: 10px;
   border: 2px solid rgba(00, 00, 00, 0.6);
   box-shadow: 0px 2px 2px 2px rgba(00, 00, 00, 0.4);
   align-content: center;
   box-sizing: border-box;
   border-radius: 8px;
   font-family: Solway;
-  font-size: 20px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  column-width: 25%;
+}
+.canteenmenu tbody{
+  width: 100%;
+}
+.canteen-menu-heading th,
+.canteen-menu-row td {
+ text-align: center;
+ width: 25%;
 }
 
 .footer {
   position: fixed;
   width: 100%;
-  height: 80px;
+  height: auto;
   bottom: 0;
-  left: 0px;
   background: #000000;
   font-family: Solway;
-  color: #FFFFFF;
-  line-height: 80px;
-  text-align: center;
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  padding: 20px 0;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 200px;
+  box-sizing: border-box;
+  background-color: #e7e7e7;
+  border-radius: 8px;
+}
+
+.bhawan {
+  margin: 5px 0;
+  width: auto;
+  height: 35px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-family: Solway;
+  font-size: 20px;
+}
+
+input[type="submit"] {
+  width: auto;
+  text-decoration: none;
+  background-color: #e7e7e7;
+  color: black;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: Solway;
+  height: auto;
+  border: 2px solid rgba(00, 00, 00, 0.6);
+  box-shadow: 0px 2px 2px 2px rgba(00, 00, 00, 0.4);
+  align-content: center;
+  box-sizing: border-box;
+  border-radius: 8px;
 }

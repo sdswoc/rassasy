@@ -26,6 +26,11 @@ body {
 
 /* The side navigation menu */
 
+.header {
+  font-family: Satisfy;
+  font-size: 70px;
+}
+
 .sidebar {
   margin: 0;
   padding: 0;
@@ -96,6 +101,23 @@ div.content {
     text-align: center;
     float: none;
   }
+
+  .orders {
+    margin-left: 0 !important;
+  }
+
+  .allorder {
+    margin-left: 0 !important;
+  }
+
+  .menu {
+    margin-left: 0 !important;
+  }
+
+  .update {
+    margin-left: 0 !important;
+  }
+
 }
 
 .orders {
