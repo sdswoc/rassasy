@@ -1,0 +1,130 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Rassasy: Registration
+    </title>
+    <link rel="stylesheet" href="../css/registrationcanteen.css" />
+  </head>
+  <body>
+    <div class="registration-canteen-container">
+      <div><img class="logo" src="/Images/images.jpeg" alt="" /></div>
+      <div class="header">Canteen Registration</div>
+      <div class="body">
+        <div class="registration">
+          <form method="POST" action="/php/registercanteen.php">
+            Canteen's Name: <input type="text" name="canteenname" /><br />
+            Canteen ID: 
+            <input
+            type="text"
+            id="canteenid"
+            name="canteenid"
+            required="required"
+          />
+          <br /><label class="text-danger" id="canteenid_result"></label>
+          <br />
+
+          <script>
+                  $("#canteenid").keyup(function(event) {
+            event.preventDefault();
+            var canteenid_input=$("#canteenid").val();
+
+            $.ajax({
+                type:"post",
+                url:"/php/check_canteenid_signup.php",
+                data:{canteenid:canteenid_input},
+                success:function(response){
+
+                  if (response=="false") {
+                    $("#canteenid_result").html("canteen id Already Exists");
+                  }
+                   else if(response=="true")
+                    $("#canteenid_result").empty();
+                }
+            });
+          </script>
+
+          Password:
+            <input
+              type="password"
+              name="password"
+              id="p"
+              required="required"
+              onkeyup="pass_check()"
+            />
+            <br />
+            Confirm Password:
+            <input
+              type="password"
+              name="password2"
+              id="p2"
+              required="required"
+              onkeyup="pass_check()"
+            />
+            <br /><label id="pass"></label> <br />
+
+            <script type="text/javascript">
+              var check_password = 0;
+              function pass_check() {
+                var p = document.getElementById("p").value;
+                var p2 = document.getElementById("p2").value;
+                if (p2) {
+                  if (p != p2) {
+                    var msg = "Passwords don't match".fontcolor("red");
+                    document.getElementById("pass").innerHTML = msg;
+                    check_password = 0;
+                  } else {
+                    var msg = "Passwords match".fontcolor("green");
+                    document.getElementById("pass").innerHTML = msg;
+                    check_password = 1;
+                  }
+                }
+              }
+            </script>
+
+Email Address:
+            <input
+              type="email"
+              id="signup_email"
+              name="email"
+              required="required"
+            />
+            <br /><label class="text-danger" id="signup_email_result"></label>
+            <br />
+
+            <script>
+              $("#signup_email").keyup(function(event) {
+                event.preventDefault();
+                var email_input = $("#signup_email").val();
+
+                $.ajax({
+                  type: "post",
+                  url: "/php/check_email_signup.php",
+                  data: { email: email_input,table: canteen},
+                  success: function(response) {
+                    if (response == "false") {
+                      $("#signup_email_result").html("Email Already Exists");
+                    } else if (response == "true")
+                      $("#signup_email_result").empty();
+                  }
+                });
+              });
+            </script>
+
+            
+            Managers Name: <input type="text" name="managername" /><br />
+            Mobile No: <input type="text" name="mobile" /><br />
+            Location: <input type="text" name="location" /><br />
+            Opening Time: <input type="time" name="openingtime" /><br />
+            Closing Time: <input type="time" name="closingtime" /><br />
+            <input type="submit" value="Register"/>
+          </form>
+          <a href="/html/login.html">Already have an account? Login.</a>
+        </div>
+      </div>
+    </div>
+    
+
+
+  </body>
+</html>

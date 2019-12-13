@@ -34,7 +34,7 @@ body {
 .sidebar {
   margin: 0;
   padding: 0;
-  width: 30%;
+  width: 20%;
   background-color: #e7e7e7;
   position: fixed;
   height: 100%;
@@ -121,12 +121,12 @@ div.content {
 }
 
 .orders {
-  width: 70%;
+  width: 80%;
   height: 100%;
   font-family: Solway;
   text-align: center;
   font-size: 40px;
-  margin-left: 30%;
+  margin-left: 20%;
   display: flex;
   flex-direction: column;
   padding: 20px 0;

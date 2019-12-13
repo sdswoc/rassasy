@@ -11,10 +11,10 @@
       <div class="body">
         <div class="sidebar">
           <div class="header">Rassasy<br /></div>
-          <a href="userhomepage.html">Ongoing Orders</a>
-          <a href="ordernow.html">Order Now</a>
-          <a href="pastorder.html">Past Orders</a>
-          <a href="userprofile.html">Profile</a>
+          <a href="userhomepage.php">Ongoing Orders</a>
+          <a href="ordernow.php">Order Now</a>
+          <a href="pastorder.php">Past Orders</a>
+          <a href="userprofile.php">Profile</a>
         </div>
         <div class="orders">
           <div class="content">

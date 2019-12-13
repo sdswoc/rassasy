@@ -1,0 +1,166 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Rassasy: Registration
+    </title>
+    <link rel="stylesheet" href="../css/registrationuser.css" />
+    <link rel="stylesheet" href="../css/bootstrap.min.css" >
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/dist/jquery/jquery-2.1.1.min.js"></script>
+  </head>
+  <body>
+    <div class="registration-user-container">
+      <div class="header">User Registration</div>
+      <div class="body">
+        <div><img class="logo" src="/Images/images.jpeg" alt="" /></div>
+        <div class="registration">
+          <form method="POST" action="../php/registeruser.php">
+            Name: <input type="text" name="name" required="required" /><br />
+            Enrollment No:
+            <input
+              type="text"
+              id="enroll"
+              name="enroll"
+              required="required"
+            />
+            <br /><label class="text-danger" id="enroll_result"></label>
+            <br />
+
+            <script>
+                            $("#enroll").keyup(function(event) {
+              event.preventDefault();
+              var username_input=$("#enroll").val();
+
+              $.ajax({
+                  type:"post",
+                  url:"../php/check_enroll_signup.php",
+                  data:{enroll:enroll_input},
+                  success:function(response){
+
+                    if (response=="false") {
+                      $("#enroll_result").html("Enrollment Number Already Exists");
+                    }
+                     else if(response=="true")
+                      $("#enroll_result").empty();
+                  }
+              });
+            </script>
+
+            Username:
+            <input
+              type="text"
+              id="username"
+              name="username"
+              required="required"
+            />
+            <br /><label class="text-danger" id="username_result"></label>
+            <br />
+
+            <script>
+                    $("#username").keyup(function(event) {
+              event.preventDefault();
+              var username_input=$("#username").val();
+
+              $.ajax({
+                  type:"post",
+                  url:"../php/check_username_signup.php",
+                  data:{username:username_input},
+                  success:function(response){
+
+                    if (response=="false") {
+                      $("#username_result").html("Username Already Exists");
+                    }
+                     else if(response=="true")
+                      $("#username_result").empty();
+                  }
+              });
+            </script>
+
+            Password:
+            <input
+              type="password"
+              name="password"
+              id="p"
+              required="required"
+              onkeyup="pass_check()"
+            />
+            <br />
+            Confirm Password:
+            <input
+              type="password"
+              name="password2"
+              id="p2"
+              required="required"
+              onkeyup="pass_check()"
+            />
+            <br /><label id="pass"></label> <br />
+
+            <script type="text/javascript">
+              var check_password = 0;
+              function pass_check() {
+                var p = document.getElementById("p").value;
+                var p2 = document.getElementById("p2").value;
+                if (p2) {
+                  if (p != p2) {
+                    var msg = "Passwords don't match".fontcolor("red");
+                    document.getElementById("pass").innerHTML = msg;
+                    check_password = 0;
+                  } else {
+                    var msg = "Passwords match".fontcolor("green");
+                    document.getElementById("pass").innerHTML = msg;
+                    check_password = 1;
+                  }
+                }
+              }
+            </script>
+
+            Mobile No:
+            <input type="text" name="mobile" required="required" /><br />
+
+            Bhawan:
+            <select class="bhawan" id="bhawan" required="required">
+              <option value="1">one</option>
+              <option value="2">two</option>
+              <option value="3">three</option>
+              <option value="4">four</option>
+            </select>
+            Room no: <input type="text" name="room" required="required" /><br />
+            Email Address:
+            <input
+              type="email"
+              id="signup_email"
+              name="email"
+              required="required"
+            />
+            <br /><label class="text-danger" id="signup_email_result"></label>
+            <br />
+
+            <script>
+              $("#signup_email").keyup(function(event) {
+                event.preventDefault();
+                var email_input = $("#signup_email").val();
+
+                $.ajax({
+                  type: "post",
+                  url: "../php/check_email_signup.php",
+                  data: { email: email_input,table: student},
+                  success: function(response) {
+                    if (response == "false") {
+                      $("#signup_email_result").html("Email Already Exists");
+                    } else if (response == "true")
+                      $("#signup_email_result").empty();
+                  }
+                });
+              });
+            </script>
+
+            <input type="submit" value="Register" />
+          </form>
+          <a href="/html/login.html">Already have an account? Login.</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

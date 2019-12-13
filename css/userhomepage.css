@@ -33,7 +33,7 @@ body {
 .sidebar {
   margin: 0;
   padding: 0;
-  width: 30%;
+  width: 20%;
   background-color: #e7e7e7;
   position: fixed;
   height: 100%;
@@ -126,8 +126,8 @@ body {
 }
 
 .orders {
-  width: 70%;
-  margin-left: 30%;
+  width: 80%;
+  margin-left: 20%;
   display: flex;
   flex-direction: column;
 }
@@ -189,6 +189,16 @@ body {
   align-content: center;
   box-sizing: border-box;
   border-radius: 8px;
+}
+
+hr {
+  display: block;
+  margin-top: 0.5cm;
+  margin-bottom: 0.5cm;
+  border-style: inset;
+  border-width: 1px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .viewcart {
