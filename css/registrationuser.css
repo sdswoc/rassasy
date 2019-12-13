@@ -39,9 +39,9 @@ body {
 }
 
 @media screen and (max-width: 750px) {
-    .header{
-        font-size: 36px !important;
-    }
+  .header {
+    font-size: 36px !important;
+  }
 }
 .header {
   width: 100%;
@@ -69,7 +69,6 @@ body {
 }
 
 .registration {
-
   text-align: center;
   align-items: center;
   justify-content: center;

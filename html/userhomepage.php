@@ -13,11 +13,11 @@
         <div class="sidebar">
             <div class="header">Rassasy<br></div>
             <u>
-            <?php
+                <?php
                 session_start();
-                echo "Hey, ".$_SESSION[username];
+                echo "Hey, " . $_SESSION[username];
                 ?> </u>
-                <hr>
+            <hr>
             <a href="userhomepage.php">Ongoing Orders</a>
             <a href="ordernow.php">Order Now</a>
             <a href="pastorder.php">Past Orders</a>
@@ -26,7 +26,7 @@
         </div>
         <div class="orders">
             <div class="content"> Ongoing orders are displayed here.
-                
+
             </div>
         </div>
     </div>

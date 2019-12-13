@@ -5,7 +5,7 @@
       Rassasy: Registration
     </title>
     <link rel="stylesheet" href="../css/registrationuser.css" />
-    <link rel="stylesheet" href="../css/bootstrap.min.css" >
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/dist/jquery/jquery-2.1.1.min.js"></script>
@@ -19,32 +19,27 @@
           <form method="POST" action="../php/registeruser.php">
             Name: <input type="text" name="name" required="required" /><br />
             Enrollment No:
-            <input
-              type="text"
-              id="enroll"
-              name="enroll"
-              required="required"
-            />
+            <input type="text" id="enroll" name="enroll" required="required" />
             <br /><label class="text-danger" id="enroll_result"></label>
             <br />
 
             <script>
-                            $("#enroll").keyup(function(event) {
-              event.preventDefault();
-              var username_input=$("#enroll").val();
+              $("#enroll").keyup(function(event) {
+                event.preventDefault();
+                var enroll_input = $("#enroll").val();
 
-              $.ajax({
-                  type:"post",
-                  url:"../php/check_enroll_signup.php",
-                  data:{enroll:enroll_input},
-                  success:function(response){
-
-                    if (response=="false") {
-                      $("#enroll_result").html("Enrollment Number Already Exists");
-                    }
-                     else if(response=="true")
-                      $("#enroll_result").empty();
+                $.ajax({
+                  type: "post",
+                  url: "../php/check_enroll_signup.php",
+                  data: { enroll: enroll_input },
+                  success: function(response) {
+                    if (response == "false") {
+                      $("#enroll_result").html(
+                        "Enrollment Number Already Exists"
+                      );
+                    } else if (response == "true") $("#enroll_result").empty();
                   }
+                });
               });
             </script>
 
@@ -59,22 +54,21 @@
             <br />
 
             <script>
-                    $("#username").keyup(function(event) {
-              event.preventDefault();
-              var username_input=$("#username").val();
+              $("#username").keyup(function(event) {
+                event.preventDefault();
+                var username_input = $("#username").val();
 
-              $.ajax({
-                  type:"post",
-                  url:"../php/check_username_signup.php",
-                  data:{username:username_input},
-                  success:function(response){
-
-                    if (response=="false") {
+                $.ajax({
+                  type: "post",
+                  url: "../php/check_username_signup.php",
+                  data: { username: username_input },
+                  success: function(response) {
+                    if (response == "false") {
                       $("#username_result").html("Username Already Exists");
-                    }
-                     else if(response=="true")
+                    } else if (response == "true")
                       $("#username_result").empty();
                   }
+                });
               });
             </script>
 
@@ -145,7 +139,7 @@
                 $.ajax({
                   type: "post",
                   url: "../php/check_email_signup.php",
-                  data: { email: email_input,table: student},
+                  data: { email: email_input, table: student },
                   success: function(response) {
                     if (response == "false") {
                       $("#signup_email_result").html("Email Already Exists");

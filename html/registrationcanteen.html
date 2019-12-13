@@ -14,37 +14,38 @@
         <div class="registration">
           <form method="POST" action="/php/registercanteen.php">
             Canteen's Name: <input type="text" name="canteenname" /><br />
-            Canteen ID: 
+            Canteen ID:
             <input
-            type="text"
-            id="canteenid"
-            name="canteenid"
-            required="required"
-          />
-          <br /><label class="text-danger" id="canteenid_result"></label>
-          <br />
+              type="text"
+              id="canteenid"
+              name="canteenid"
+              required="required"
+            />
+            <br /><label class="text-danger" id="canteenid_result"></label>
+            <br />
 
-          <script>
-                  $("#canteenid").keyup(function(event) {
-            event.preventDefault();
-            var canteenid_input=$("#canteenid").val();
+            <script>
+                    $("#canteenid").keyup(function(event) {
+              event.preventDefault();
+              var canteenid_input=$("#canteenid").val();
 
-            $.ajax({
-                type:"post",
-                url:"/php/check_canteenid_signup.php",
-                data:{canteenid:canteenid_input},
-                success:function(response){
+              $.ajax({
+                  type:"post",
+                  url:"/php/check_canteenid_signup.php",
+                  data:{canteenid:canteenid_input},
+                  success:function(response){
 
-                  if (response=="false") {
-                    $("#canteenid_result").html("canteen id Already Exists");
+                    if (response=="false") {
+                      $("#canteenid_result").html("canteen id Already Exists");
+                    }
+                     else if(response=="true")
+                      $("#canteenid_result").empty();
                   }
-                   else if(response=="true")
-                    $("#canteenid_result").empty();
-                }
-            });
-          </script>
+              });
+                    });
+            </script>
 
-          Password:
+            Password:
             <input
               type="password"
               name="password"
@@ -82,7 +83,7 @@
               }
             </script>
 
-Email Address:
+            Email Address:
             <input
               type="email"
               id="signup_email"
@@ -100,7 +101,7 @@ Email Address:
                 $.ajax({
                   type: "post",
                   url: "/php/check_email_signup.php",
-                  data: { email: email_input,table: canteen},
+                  data: { email: email_input, table: canteen },
                   success: function(response) {
                     if (response == "false") {
                       $("#signup_email_result").html("Email Already Exists");
@@ -111,20 +112,16 @@ Email Address:
               });
             </script>
 
-            
             Managers Name: <input type="text" name="managername" /><br />
             Mobile No: <input type="text" name="mobile" /><br />
             Location: <input type="text" name="location" /><br />
             Opening Time: <input type="time" name="openingtime" /><br />
             Closing Time: <input type="time" name="closingtime" /><br />
-            <input type="submit" value="Register"/>
+            <input type="submit" value="Register" />
           </form>
           <a href="/html/login.html">Already have an account? Login.</a>
         </div>
       </div>
     </div>
-    
-
-
   </body>
 </html>
