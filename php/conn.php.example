@@ -1,8 +1,8 @@
 <?php
-$username="shreya";
-$password="shreya123";
-$db="rassasy";
-$servername="localhost";
+$username="";
+$password="";
+$db="";
+$servername="";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password,$db);
@@ -11,3 +11,4 @@ $conn = new mysqli($servername, $username, $password,$db);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+?>
