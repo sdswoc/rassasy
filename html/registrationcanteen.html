@@ -14,7 +14,7 @@
       <div class="header">Canteen Registration</div>
       <div class="body">
         <div class="registration">
-          <form method="POST" action="/php/registercanteen.php">
+          <form method="POST">
             Canteen's Name: <input type="text" name="canteenname" /><br />
             Canteen ID:
             <input
@@ -52,7 +52,7 @@
               name="email"
               required="required"
             />
-            <br /><label class="error" id="signup_email_result"></label>
+            <br /><label class="error" id="email_result"></label>
             <br />
 
             Managers Name: <input type="text" name="managername" /><br />
@@ -60,21 +60,24 @@
             Location: <input type="text" name="location" /><br />
             Opening Time: <input type="time" name="openingtime" /><br />
             Closing Time: <input type="time" name="closingtime" /><br />
-            <input type="submit" value="Register" />
+            <input type="submit" id="btnSubmit" value="Register" />
           </form>
           <a href="/html/login.html">Already have an account? Login.</a>
         </div>
       </div>
     </div>
     <script>
+      var check = [0,0,0];
+
       $("#canteenid").blur(function(event) {
-        var canteenidinput = $("#canteenid").val();
+        var input = "canteenid";
+        var inputvalue = $("#canteenid").val();
+        let tablename = "canteen";
 
         $.ajax({
           type: "post",
           url: "../php/check_canteenid.php",
-          data: { canteenid: canteenidinput },
-          dataType: "json",
+          data: { input: input, inputvalue: inputvalue, tablename: tablename },
           success: function(response) {
             if (!response) {
               $("#canteenid_result").html("canteen ID Already Exists");
@@ -82,7 +85,8 @@
               alert("canteen ID Already Exists");
             } else {
               $("#canteenid_result").empty();
-            }
+              check[0] = 1;         
+                 }
           }
         });
       });
@@ -100,18 +104,20 @@
             var msg = "Passwords match".fontcolor("green");
             document.getElementById("pass").innerHTML = msg;
             check_password = 1;
+            check[1]=1;
           }
         }
       }
 
-      $("#email").keyup(function(event) {
-        var emailinput = $("#email").val();
-        var tablename = "canteen";
+      $("#email").blur(function(event) {
+        var input = "email";
+        var inputvalue = $("#email").val();
+        let tablename = "canteen";
 
         $.ajax({
           type: "post",
-          url: "../php/check_email.php",
-          data: { email: emailinput, tablename: tablename },
+          url: "../php/check_canteenid.php",
+          data: { input: input, inputvalue: inputvalue, tablename: tablename },
           dataType: "json",
           success: function(response) {
             if (!response) {
@@ -120,10 +126,47 @@
               alert("Email Already Exists");
             } else {
               $("#email_result").empty();
+              check[2]=1;
             }
           }
         });
       });
+
+      $('#btnSubmit').on('click', function(){
+ 	var canteenname = $('#canteenname').val();
+ 	var email = $('#email').val();
+ 	var password = $('#password').val();
+  var canteenid = $('#canteenid').val();
+  var managername = $('#managername').val();
+  var location = $('#location').val();
+  var openingtime = $('#openingtime').val();
+  var closingtime = $('#closingtime').val();
+  var mobile = $('#mobile').val();
+ 	if (check[0]==0 || check[1]==0) {
+	  $('#error').text('Fix the errors in the form first');
+	}
+  else{
+      // proceed with form submission
+      $.ajax({
+      	url: 'registeruser.php',
+      	type: 'post',
+      	data: {
+      		'email' : email,
+      		'canteenname' : canteenname,
+      		'password' : password,
+          'canteenid' : canteenid,
+          'managername' : managername,
+          'location' : location,
+          'mobile' : mobile,
+          'openingtime' : openingtime,
+          'closingtime' : closingtime
+      	},
+      	success: function(response){
+      		alert('user saved');
+      	}
+      });
+ 	}
+ });
     </script>
   </body>
 </html>
