@@ -17,6 +17,11 @@ body {
   display: none;
 }
 
+.error {
+  font-size: 14px;
+  color: red;
+}
+
 @media screen and (max-width: 400px) {
   .header {
   }
@@ -77,6 +82,7 @@ body {
 }
 
 input[type="text"],
+input[type="email"],
 input[type="password"],
 input[type="time"] {
   width: 200px;
