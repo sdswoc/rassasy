@@ -3,7 +3,7 @@ The aim of this project is to enable an ordering, order pick-up and delivery sys
 
  To set up the file on your device:
 1. Clone it in your local repository.
-2. Copy the content of 'conn.php.example' to a new file 'conn.php' in 'php' folder and add the required values in variables.
-3. Import the database from 'database' folder to your phpMyAdmin.
-4. Type the command 'php -S localhost:9999' in the terminal in your local repository.
+2. Copy the content of `conn.php.example` to a new file `conn.php` in 'php' folder and add the required values in variables.
+3. Import the database from `database` folder to your phpMyAdmin.
+4. Type the command `php -S localhost:9999` in the terminal in your local repository.
 

@@ -2,7 +2,7 @@
 include('conn.php');
 
 $email_input = $_POST[email];
-$tablename = $_POST[table];
+$tablename = $_POST[tablename];
 if (isset($_POST[id])) {
     $id = $_POST[id];
     $sql = "select email from $tablename where email like '%$email_input%' and id!=$id;";

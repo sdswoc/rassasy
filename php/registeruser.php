@@ -20,5 +20,12 @@ $sql="insert into student(name,enroll,username,password,mobile,bhawan,room,email
       $index_url="http://".$host.$uri;
 header( "Location: $index_url" );
 }
+else {
+  echo "Registration failed";
+  $host  = $_SERVER['HTTP_HOST'];
+      $uri="/html/registrationuser.html";
+      $index_url="http://".$host.$uri;
+header( "Location: $index_url" );
+}
 $conn->close();
  ?>
