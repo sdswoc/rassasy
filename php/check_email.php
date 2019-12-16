@@ -1,13 +1,12 @@
 <?php
 include('conn.php');
 
-$email_input = $_POST[email];
-$tablename = $_POST[tablename];
+$emailinput = $_POST[email];
 if (isset($_POST[id])) {
     $id = $_POST[id];
-    $sql = "select email from $tablename where email like '%$email_input%' and id!=$id;";
+    $sql = "select * from student where email= '$emailinput' and id!=$id;";
 } else
-    $sql = "select email from $tablename where email like '%$email_input%';";
+    $sql = "select * from student where email= '$emailinput';";
 $result = $conn->query($sql);
 $n = $result->num_rows;
 if ($n > 0) {

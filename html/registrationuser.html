@@ -19,7 +19,7 @@
             Name: <input type="text" name="name" required="required" /><br />
             Enrollment No:
             <input type="text" id="enroll" name="enroll" required="required" />
-            <br /><label class="text-danger" id="enroll_result"></label>
+            <br /><label class="error" id="enroll_result"></label>
             <br />
 
             Username:
@@ -29,7 +29,7 @@
               name="username"
               required="required"
             />
-            <br /><label class="text-danger" id="username_result"></label>
+            <br /><label class="error" id="username_result"></label>
             <br />
 
             Password:
@@ -63,8 +63,8 @@
             </select>
             Room no: <input type="text" name="room" required="required" /><br />
             Email Address:
-            <input type="email" id="email" name="email" required="required" />
-            <br /><label class="text-danger" id="email_result"></label>
+            <input type="email" name="email" id="email" required="required" />
+            <br /><label class="error" id="email_result"></label>
             <br />
 
             <input type="submit" value="Register" />
@@ -75,7 +75,7 @@
     </div>
 
     <script>
-      $("#enroll").keyup(function(event) {
+      $("#enroll").blur(function(event) {
         var enrollinput = $("#enroll").val();
 
         $.ajax({
@@ -87,18 +87,20 @@
             if (response == "false") {
               $("#enroll_result").html("Enrollment Number Already Exists");
               event.preventDefault();
+              alert("Enrollment Number Already Exists");
             } else if (response == "true") $("#enroll_result").empty();
           }
         });
       });
 
-      $("#username").keyup(function(event) {
+      $("#username").blur(function(event) {
         var usernameinput = $("#username").val();
 
         $.ajax({
           type: "post",
           url: "../php/check_username.php",
           data: { username: usernameinput },
+          dataType: "json",
           success: function(response) {
             if (response == "false") {
               $("#username_result").html("Username Already Exists");
@@ -127,17 +129,16 @@
       }
 
       $("#email").keyup(function(event) {
-        event.preventDefault();
         var emailinput = $("#email").val();
-        var tablename="student";
 
         $.ajax({
           type: "post",
           url: "../php/check_email.php",
-          data: { email: emailinput, tablename: student },
+          data: { email: emailinput },
           success: function(response) {
             if (response == "false") {
               $("#email_result").html("Email Already Exists");
+              event.preventDefault();
             } else if (response == "true") $("#email_result").empty();
           }
         });

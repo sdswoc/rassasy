@@ -17,7 +17,7 @@ body {
   display: none;
 }
 
-.text-danger {
+.error {
   font-size: 20px;
   color: red;
 }
