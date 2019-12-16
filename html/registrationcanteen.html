@@ -5,6 +5,8 @@
       Rassasy: Registration
     </title>
     <link rel="stylesheet" href="../css/registrationcanteen.css" />
+    <script type="text/javascript" src="../JS/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
   <body>
     <div class="registration-canteen-container">
@@ -23,27 +25,6 @@
             />
             <br /><label class="error" id="canteenid_result"></label>
             <br />
-
-            <script>
-                    $("#canteenid").keyup(function(event) {
-              event.preventDefault();
-              var canteenid_input=$("#canteenid").val();
-
-              $.ajax({
-                  type:"post",
-                  url:"/php/check_canteenid_signup.php",
-                  data:{canteenid:canteenid_input},
-                  success:function(response){
-
-                    if (response=="false") {
-                      $("#canteenid_result").html("canteen id Already Exists");
-                    }
-                     else if(response=="true")
-                      $("#canteenid_result").empty();
-                  }
-              });
-                    });
-            </script>
 
             Password:
             <input
@@ -64,25 +45,6 @@
             />
             <br /><label id="pass"></label> <br />
 
-            <script type="text/javascript">
-              var check_password = 0;
-              function pass_check() {
-                var p = document.getElementById("p").value;
-                var p2 = document.getElementById("p2").value;
-                if (p2) {
-                  if (p != p2) {
-                    var msg = "Passwords don't match".fontcolor("red");
-                    document.getElementById("pass").innerHTML = msg;
-                    check_password = 0;
-                  } else {
-                    var msg = "Passwords match".fontcolor("green");
-                    document.getElementById("pass").innerHTML = msg;
-                    check_password = 1;
-                  }
-                }
-              }
-            </script>
-
             Email Address:
             <input
               type="email"
@@ -92,25 +54,6 @@
             />
             <br /><label class="error" id="signup_email_result"></label>
             <br />
-
-            <script>
-              $("#signup_email").keyup(function(event) {
-                event.preventDefault();
-                var email_input = $("#signup_email").val();
-
-                $.ajax({
-                  type: "post",
-                  url: "/php/check_email_signup.php",
-                  data: { email: email_input, table: canteen },
-                  success: function(response) {
-                    if (response == "false") {
-                      $("#signup_email_result").html("Email Already Exists");
-                    } else if (response == "true")
-                      $("#signup_email_result").empty();
-                  }
-                });
-              });
-            </script>
 
             Managers Name: <input type="text" name="managername" /><br />
             Mobile No: <input type="text" name="mobile" /><br />
@@ -123,5 +66,64 @@
         </div>
       </div>
     </div>
+    <script>
+      $("#canteenid").blur(function(event) {
+        var canteenidinput = $("#canteenid").val();
+
+        $.ajax({
+          type: "post",
+          url: "../php/check_canteenid.php",
+          data: { canteenid: canteenidinput },
+          dataType: "json",
+          success: function(response) {
+            if (!response) {
+              $("#canteenid_result").html("canteen ID Already Exists");
+              event.preventDefault();
+              alert("canteen ID Already Exists");
+            } else {
+              $("#canteenid_result").empty();
+            }
+          }
+        });
+      });
+      
+      var check_password = 0;
+      function pass_check() {
+        var p = document.getElementById("p").value;
+        var p2 = document.getElementById("p2").value;
+        if (p2) {
+          if (p != p2) {
+            var msg = "Passwords don't match".fontcolor("red");
+            document.getElementById("pass").innerHTML = msg;
+            check_password = 0;
+          } else {
+            var msg = "Passwords match".fontcolor("green");
+            document.getElementById("pass").innerHTML = msg;
+            check_password = 1;
+          }
+        }
+      }
+
+      $("#email").keyup(function(event) {
+        var emailinput = $("#email").val();
+        var tablename = "canteen";
+
+        $.ajax({
+          type: "post",
+          url: "../php/check_email.php",
+          data: { email: emailinput, tablename: tablename },
+          dataType: "json",
+          success: function(response) {
+            if (!response) {
+              $("#email_result").html("Email Already Exists");
+              event.preventDefault();
+              alert("Email Already Exists");
+            } else {
+              $("#email_result").empty();
+            }
+          }
+        });
+      });
+    </script>
   </body>
 </html>
