@@ -84,11 +84,12 @@
           data: { enroll: enrollinput },
           dataType: "json",
           success: function(response) {
-            if (response == "false") {
+            if (!response) {
               $("#enroll_result").html("Enrollment Number Already Exists");
               event.preventDefault();
               alert("Enrollment Number Already Exists");
-            } else if (response == "true") $("#enroll_result").empty();
+            } else {
+               $("#enroll_result").empty(); }
           }
         });
       });
@@ -102,11 +103,12 @@
           data: { username: usernameinput },
           dataType: "json",
           success: function(response) {
-            if (response == "false") {
+            if (!response) {
               $("#username_result").html("Username Already Exists");
               event.preventDefault();
               alert("Username Already Exists");
-            } else if (response == "true") $("#username_result").empty();
+            } else {
+              $("#username_result").empty(); }
           }
         });
       });
@@ -130,16 +132,20 @@
 
       $("#email").keyup(function(event) {
         var emailinput = $("#email").val();
+        var tablename = "student";
 
         $.ajax({
           type: "post",
           url: "../php/check_email.php",
-          data: { email: emailinput },
+          data: { email: emailinput, tablename: tablename },
+          dataType: "json",
           success: function(response) {
-            if (response == "false") {
+            if (!response) {
               $("#email_result").html("Email Already Exists");
               event.preventDefault();
-            } else if (response == "true") $("#email_result").empty();
+              alert("Email Already Exists");
+            } else{
+               $("#email_result").empty(); }
           }
         });
       });
