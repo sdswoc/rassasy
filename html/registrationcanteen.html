@@ -76,7 +76,7 @@
 
         $.ajax({
           type: "post",
-          url: "../php/check_canteenid.php",
+          url: "../php/check.php",
           data: { input: input, inputvalue: inputvalue, tablename: tablename },
           success: function(response) {
             if (!response) {
@@ -116,7 +116,7 @@
 
         $.ajax({
           type: "post",
-          url: "../php/check_canteenid.php",
+          url: "../php/check.php",
           data: { input: input, inputvalue: inputvalue, tablename: tablename },
           dataType: "json",
           success: function(response) {
@@ -145,6 +145,9 @@
  	if (check[0]==0 || check[1]==0) {
 	  $('#error').text('Fix the errors in the form first');
 	}
+  else if (check[2]==0) {
+    $('#error').text('Fix the errors in the form first');
+  }
   else{
       // proceed with form submission
       $.ajax({
