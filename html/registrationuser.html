@@ -75,13 +75,17 @@
     </div>
 
     <script>
+      let checkvariable=[0,0,0,0];
+
       $("#enroll").blur(function(event) {
-        var enrollinput = $("#enroll").val();
+        var input = "enroll";
+        var inputvalue = $("#enroll").val();
+        var tablename = "student";
 
         $.ajax({
           type: "post",
-          url: "../php/check_enroll.php",
-          data: { enroll: enrollinput },
+          url: "../php/check.php",
+          data: { input: input, inputvalue: inputvalue, tablename: tablename },
           dataType: "json",
           success: function(response) {
             if (!response) {
@@ -90,30 +94,34 @@
               alert("Enrollment Number Already Exists");
             } else {
               $("#enroll_result").empty();
+              checkvariable[0]=1;
             }
           }
         });
       });
 
-      $("#username").blur(function(event) {
-        var usernameinput = $("#username").val();
+        $("#username").blur(function(event) {
+        var input = "username";
+        var inputvalue = $("#username").val();
+        let tablename = "student";
 
         $.ajax({
           type: "post",
-          url: "../php/check_username.php",
-          data: { username: usernameinput },
+          url: "../php/check.php",
+          data: { input: input, inputvalue: inputvalue, tablename: tablename },
           dataType: "json",
           success: function(response) {
             if (!response) {
               $("#username_result").html("Username Already Exists");
               event.preventDefault();
-              alert("Username Already Exists");
+              alert("username Already Exists");
             } else {
               $("#username_result").empty();
+              checkvariable[1]=1;
             }
           }
         });
-      });
+        });
 
       var check_password = 0;
       function pass_check() {
@@ -128,18 +136,20 @@
             var msg = "Passwords match".fontcolor("green");
             document.getElementById("pass").innerHTML = msg;
             check_password = 1;
+            checkvariable[2]=1;
           }
         }
       }
 
-      $("#email").keyup(function(event) {
-        var emailinput = $("#email").val();
+      $("#email").blur(function(event) {
+        var input = "email";
+        var inputvalue = $("#email").val();
         var tablename = "student";
 
         $.ajax({
           type: "post",
-          url: "../php/check_email.php",
-          data: { email: emailinput, tablename: tablename },
+          url: "../php/check.php",
+          data: { input: input, inputvalue: inputvalue, tablename: tablename },
           dataType: "json",
           success: function(response) {
             if (!response) {
@@ -148,10 +158,48 @@
               alert("Email Already Exists");
             } else {
               $("#email_result").empty();
+              checkvariable[3]=1;
             }
           }
         });
       });
+
+      $('#btnSubmit').on('click', function(){
+ 	var name = $('#name').val();
+  var username = $('#username').val();
+ 	var email = $('#email').val();
+ 	var password = $('#password').val();
+  var enroll = $('#enroll').val();
+  var bhawan = $('#bhawan').val();
+  var room = $('#room').val();
+  var mobile = $('#mobile').val();
+ 	if (checkvariable[0]==0 || checkvariable[1]==0) {
+	  $('#error').text('Fix the errors in the form first');
+	}
+  else if (checkvariable[2]==0 || checkvariable[3]==0) {
+    $('#error').text('Fix the errors in the form first');
+  }
+  else{
+      // proceed with form submission
+      $.ajax({
+      	url: 'registeruser.php',
+      	type: 'post',
+      	data: {
+          'name' : name,
+          'username' : username,
+      		'email' : email,
+      		'password' : password,
+          'enroll' : enroll,
+          'bhawan' : bhawan,
+          'room' : room,
+          'mobile' : mobile,
+      	},
+      	success: function(response){
+      		alert('user saved');
+      	}
+      });
+ 	}
+ });
     </script>
   </body>
 </html>
