@@ -54,7 +54,7 @@
     </div>
  </div>
  <script>
-     var save ;
+     var save=1;
      var table = document.getElementById('menutable'),
     tbody = table.getElementsByTagName('tbody')[0],
     clone = tbody.rows[0].cloneNode(true);
@@ -94,20 +94,20 @@ function updateRow(row, i, reset) {
     return row;
 }
 
-$("#itemno").keyup(function(event) {
-    $("#itemno").val(inp1.value);
+$("#inp1.id").keyup(function(event) {
+    $("#inp1.id").val(inp1.value);
 });
-$("#itemname").keyup(function(event) {
-    $("#itemno").val(inp2.value) ;
+$("#inp2.id").keyup(function(event) {
+    $("#inp2.id").val(inp2.value) ;
 });
-$("#price").keyup(function(event) {
-    $("#itemno").val(inp3.value) ;
+$("#inp3.id").keyup(function(event) {
+    $("#inp3.id").val(inp3.value) ;
 });
 
 $("#addtomenu").click(function(event) {
-        var itemno = $("#itemno").val();
-        var itemname = $("#itemname").val();
-        var price = $("#price").val();
+        var itemno = $("#inp1.id").val();
+        var itemname = $("#inp2.id").val();
+        var price = $("#inp3.id").val();
 
         $.ajax({
           type: "post",
@@ -121,7 +121,7 @@ $("#addtomenu").click(function(event) {
                 if(response) {
               alert("Saved to Menu");
               save = '1';
-              $("#itemno").val('');
+              $("#inp1.id").val('');
               inp1.value = inp2.value = inp3.value = ''; }
               else {
                   alert("Connection Error");

@@ -9,6 +9,7 @@ $tablename = "menu_$canteenname";
 $itemno=$_POST['itemno'];
 $itemname=$_POST['itemname'];
 $price=$_POST['price'];
+var_dump($itemno);
 
 $sql = "insert into $tablename(itemno, itemname, price) values('$itemno','$itemname','$price')";
 if ($conn->query($sql)==true) {
