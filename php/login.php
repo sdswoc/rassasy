@@ -13,23 +13,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $result = $conn->query($sql);
       $r = $result->fetch_assoc();
 
-      if ($result->num_rows == 1) {
+      if ($result->num_rows >0) {
         $_SESSION[id] = $r[id];
         $_SESSION[name] = $r[managername];
         $_SESSION[email] = $r[email];
         $_SESSION[username] = $r[canteenname];
         echo "true";
         if ($conn->query($sql) == true) {
-          /* $_SESSION[msg_signup]="Signup Succesful"; */
           $host  = $_SERVER['HTTP_HOST'];
-          $uri = "/html/canteenhomepage.html";
+          $uri = "/html/canteenhomepage.php";
           $index_url = "http://" . $host . $uri;
           header("Location: $index_url");
         }
         $conn->close();
       } else {
         if ($result->num_rows == 0) {
-          echo "false";
+          echo "Invalid username or password";
         }
       }
     } else if ($c == 'student') {
@@ -55,10 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       } else {
         if ($result->num_rows == 0) {
           echo "false";
-          $host  = $_SERVER['HTTP_HOST'];
-          $uri = "/html/login.html";
-          $index_url = "http://" . $host . $uri;
-          header("Location: $index_url");
 
         }
       }

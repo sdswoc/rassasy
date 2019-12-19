@@ -28,7 +28,7 @@
             particular instant will be displayed here. For example:
             <ol class="canteenselection">
                 <li>
-                    <a href="ordermenu.html">XYZ Canteen</a>
+                    <a href="ordermenu.php">XYZ Canteen</a>
                 </li>
             </ol>
             </div>

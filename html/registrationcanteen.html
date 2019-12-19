@@ -46,12 +46,7 @@
             <br /><label id="pass"></label> <br />
 
             Email Address:
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required="required"
-            />
+            <input type="email" id="email" name="email" required="required" />
             <br /><label class="error" id="email_result"></label>
             <br />
 
@@ -68,7 +63,7 @@
       </div>
     </div>
     <script>
-      var checkvar = [0,0,0];
+      var checkvar = [0, 0, 0];
 
       $("#canteenid").blur(function(event) {
         var canteenid = "canteenid";
@@ -78,20 +73,24 @@
         $.ajax({
           type: "post",
           url: "../php/check.php",
-          data: { input: canteenid, inputvalue: inputvalue, tablename: tablename },
+          data: {
+            input: canteenid,
+            inputvalue: inputvalue,
+            tablename: tablename
+          },
           success: function(response) {
-            if (response=="false") {
+            if (response == "false") {
               $("#canteenid_result").html("Canteen ID Already Exists");
               event.preventDefault();
               alert("Canteen ID Already Exists");
             } else {
               $("#canteenid_result").empty();
-              checkvar[0] = 1;         
-                 }
+              checkvar[0] = 1;
+            }
           }
         });
       });
-      
+
       var check_password = 0;
       function pass_check() {
         var p = document.getElementById("p").value;
@@ -105,7 +104,7 @@
             var msg = "Passwords match".fontcolor("green");
             document.getElementById("pass").innerHTML = msg;
             check_password = 1;
-            checkvar[1]=1;
+            checkvar[1] = 1;
           }
         }
       }
@@ -127,51 +126,49 @@
               alert("Email Already Exists");
             } else {
               $("#email_result").empty();
-              checkvar[2]=1;
+              checkvar[2] = 1;
             }
           }
         });
       });
 
-      $('#btnSubmit').on('click', function(){
- 	var canteenname = $('#canteenname').val();
- 	var email = $('#email').val();
- 	var password = $('#password').val();
-  var canteenid = $('#canteenid').val();
-  var managername = $('#managername').val();
-  var location = $('#location').val();
-  var openingtime = $('#openingtime').val();
-  var closingtime = $('#closingtime').val();
-  var mobile = $('#mobile').val();
- 	if (checkvar[0]==0 || checkvar[1]==0) {
-	  $('#error').text('Fix the errors in the form first');
-	}
-  else if (checkvar[2]==0) {
-    $('#error').text('Fix the errors in the form first');
-  }
-  else{
-      // proceed with form submission
-      $.ajax({
-      	url: 'registercanteen.php',
-      	type: 'post',
-      	data: {
-          'username': username,
-      		'email' : email,
-      		'canteenname' : canteenname,
-      		'password' : password,
-          'canteenid' : canteenid,
-          'managername' : managername,
-          'location' : location,
-          'mobile' : mobile,
-          'openingtime' : openingtime,
-          'closingtime' : closingtime
-      	},
-      	success: function(response){
-      		alert('user saved');
-      	}
+      $("#btnSubmit").on("click", function() {
+        var canteenname = $("#canteenname").val();
+        var email = $("#email").val();
+        var password = $("#password").val();
+        var canteenid = $("#canteenid").val();
+        var managername = $("#managername").val();
+        var location = $("#location").val();
+        var openingtime = $("#openingtime").val();
+        var closingtime = $("#closingtime").val();
+        var mobile = $("#mobile").val();
+        if (checkvar[0] == 0 || checkvar[1] == 0) {
+          $("#error").text("Fix the errors in the form first");
+        } else if (checkvar[2] == 0) {
+          $("#error").text("Fix the errors in the form first");
+        } else {
+          // proceed with form submission
+          $.ajax({
+            url: "registercanteen.php",
+            type: "post",
+            data: {
+              'username': username,
+              'email': email,
+              'canteenname': canteenname,
+              'password': password,
+              'canteenid': canteenid,
+              'managername': managername,
+              'location': location,
+              'mobile': mobile,
+              'openingtime': openingtime,
+              'closingtime': closingtime
+            },
+            success: function(response) {
+              alert("user saved");
+            }
+          });
+        }
       });
- 	}
- });
     </script>
   </body>
 </html>
