@@ -8,7 +8,16 @@
 
 </head>
 
-<body></body>
+<body>
+<?php
+if(!isset($_SESSION['username']))
+{
+    $host  = $_SERVER['HTTP_HOST'];
+      $uri="/html/login.html";
+      $index_url="http://".$host.$uri;
+header( "Location: $index_url" );
+}
+?>
     <div class="body">
         <div class="sidebar">
             <div class="header">Rassasy<br></div>

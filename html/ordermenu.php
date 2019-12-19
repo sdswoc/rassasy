@@ -9,41 +9,53 @@
 </head>
 
 <body>
+    <?php
+if(!isset($_SESSION['username']))
+{
+    $host  = $_SERVER['HTTP_HOST'];
+      $uri="/html/login.html";
+      $index_url="http://".$host.$uri;
+header( "Location: $index_url" );
+}
+?>
     <div class="body">
         <div class="sidebar">
                 <div class="header">Rassasy<br></div>
+                <?php
+                session_start();
+                echo "Hey, ".$_SESSION[username];
+                ?> </u>
+                <hr>
             <a href="userhomepage.php">Ongoing Orders</a>
             <a href="ordernow.php">Order Now</a>
             <a href="pastorder.php">Past Orders</a>
             <a href="userprofile.php">Profile</a>
+            <a href="userprofile.php">Profile</a>
         </div>
         <div class="orders">
             <div class="content">
-                Your Order :
-                <br><br>
+                `Canteen Name`'s menu :
                 <table class="canteenmenu">
-                    <tr>
+                    <tr class="canteen-menu-heading">
                         <th> Item No</th>
                         <th> Item Name</th>
                         <th> Price</th>
-                        <th> Quantity </th>
+                        <th>Order</th>
                     </tr>
-                    <tr>
+                    <tr class="canteen-menu-row">
                         <td> 01</td>
                         <td> Coffee</td>
                         <td> 15</td>
-                        <td>1</td>
+                        <td><button class="addtocart">Add</button></td>
                     </tr>
                 </table>
-                <br>
-                Total Sum:15
-                <br> <br>
-                <a href="userhomepage.php">
-                    <button class="paynow">Pay Now</button></a>
-            </div>
-        </div>
+            </div> </div>
     </div>
-
+    <div class="footer">
+        <div>Total Sum: </div>
+        <div><a href="ordersummary.php">
+        <button class="viewcart">View Cart</button></a></div>
+    </div>
 </body>
 
 </html>

@@ -10,7 +10,16 @@
 
 </head>
 
-<body></body>
+<body>
+<?php
+if(!isset($_SESSION['username']))
+{
+    $host  = $_SERVER['HTTP_HOST'];
+      $uri="/html/login.html";
+      $index_url="http://".$host.$uri;
+header( "Location: $index_url" );
+}
+?>
     <div class="body">
         <div class="sidebar">
                 <div class="header">Rassasy<br></div>
@@ -42,14 +51,14 @@
         <tbody>
             <tr>
                 <td>1</td>
-                <td><input size=25 type="text" id="itemno"/></td>
-                <td><input size=25 type="text" id="itemname" /></td>
-                <td><input size=25 type="text" id="price" /></td>
+                <td><input size=25 type="text" id="itemno" name="itemno"/></td>
+                <td><input size=25 type="text" id="itemname" name="itemname"/></td>
+                <td><input size=25 type="text" id="price" name="price" /></td>
                 <td><input type="button" id="delbutton" value="Delete" onclick="deleteRow(this)"/></td>
             </tr>
         </tbody>
     </table></div>
-    <input type="button" id="addrow" value="Add More Items" onclick="insRow()"/> <br/>
+    <input type="button" id="addrow" value="Add More Items" onclick="insertRow()"/> <br/>
     <input type="button" id="addtomenu" value="Add to menu"/><br/><br/>
     </div>
  </div>
@@ -62,13 +71,14 @@
 function deleteRow(el) {
     var i = el.parentNode.parentNode.rowIndex;
     table.deleteRow(i);
+    save=1;
     while (table.rows[i]) {
         updateRow(table.rows[i], i, false);
         i++;
     }
 }
 
-function insRow() {
+function insertRow() {
     if(save==0) {
         alert ("Add previous item to menu first");
     }
@@ -86,7 +96,7 @@ function updateRow(row, i, reset) {
     var inp3 = row.cells[3].getElementsByTagName('input')[0];
     inp1.id = 'itemno' + i;
     inp2.id = 'itemname' + i;
-    inp3.id = 'price' +1;
+    inp3.id = 'price' + i;
 
     if (reset) {
         inp1.value = inp2.value = inp3.value = '';
@@ -94,34 +104,33 @@ function updateRow(row, i, reset) {
     return row;
 }
 
-$("#inp1.id").keyup(function(event) {
-    $("#inp1.id").val(inp1.value);
-});
-$("#inp2.id").keyup(function(event) {
-    $("#inp2.id").val(inp2.value) ;
-});
-$("#inp3.id").keyup(function(event) {
-    $("#inp3.id").val(inp3.value) ;
-});
-
 $("#addtomenu").click(function(event) {
-        var itemno = $("#inp1.id").val();
-        var itemname = $("#inp2.id").val();
-        var price = $("#inp3.id").val();
+        var itemno_list = $("input[name='itemno']");
+        var itemname_list = $("input[name='itemname']");
+        var price_list = $("input[name='price']");
+        var add_menu_data = [];
+        for (let i = 0; i < itemno_list.length; i++) {
+            var data_row = {
+                'itemno': itemno_list[i].value,
+                'itemname': itemname_list[i].value,
+                'price': price_list[i].value,
+            }
+            add_menu_data.push(data_row);
+            console.log(add_menu_data);
+        }
 
         $.ajax({
           type: "post",
           url: "../php/addtomenu.php",
           data: { 
-            'itemno': itemno,
-            'itemname': itemname,
-            'price' : price,
+            'itemno': itemno_list,
+            'itemname': itemname_list,
+            'price' : price_list,
             },
             success: function(response) {
                 if(response) {
               alert("Saved to Menu");
               save = '1';
-              $("#inp1.id").val('');
               inp1.value = inp2.value = inp3.value = ''; }
               else {
                   alert("Connection Error");

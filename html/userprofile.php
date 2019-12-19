@@ -7,6 +7,15 @@
   </head>
 
   <body>
+  <?php
+if(!isset($_SESSION['username']))
+{
+    $host  = $_SERVER['HTTP_HOST'];
+      $uri="/html/login.html";
+      $index_url="http://".$host.$uri;
+header( "Location: $index_url" );
+}
+?>
     <div class="user-container">
       <div class="body">
         <div class="sidebar">
