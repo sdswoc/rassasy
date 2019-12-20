@@ -15,7 +15,7 @@
       <div class="body">
         <div><img class="logo" src="/Images/images.jpeg" alt="" /></div>
         <div class="registration">
-          <form method="post" action="../php/registeruser.php">
+          <form method="post">
             Name: <input type="text" name="name" required="required" /><br />
             Enrollment No:
             <input type="text" id="enroll" name="enroll" required="required" />
@@ -69,7 +69,7 @@
 
             <input type="submit" value="Register" />
           </form>
-          <a href="/html/login.html">Already have an account? Login.</a>
+          <a href="../html/login.html">Already have an account? Login.</a>
         </div>
       </div>
     </div>
@@ -123,7 +123,6 @@
         });
         });
 
-      var check_password = 0;
       function pass_check() {
         var p = document.getElementById("p").value;
         var p2 = document.getElementById("p2").value;
@@ -135,7 +134,6 @@
           } else {
             var msg = "Passwords match".fontcolor("green");
             document.getElementById("pass").innerHTML = msg;
-            check_password = 1;
             checkvariable[2]=1;
           }
         }
@@ -168,7 +166,7 @@
  	var name = $('#name').val();
   var username = $('#username').val();
  	var email = $('#email').val();
- 	var password = $('#password').val();
+ 	var password = $('#p').val();
   var enroll = $('#enroll').val();
   var bhawan = $('#bhawan').val();
   var room = $('#room').val();
@@ -182,7 +180,7 @@
   else{
       // proceed with form submission
       $.ajax({
-      	url: 'registeruser.php',
+      	url: '../php/registeruser.php',
       	type: 'post',
       	data: {
           'name' : name,

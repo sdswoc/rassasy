@@ -10,9 +10,11 @@ $mobile=$_POST['mobile'];
 $location=$_POST['location'];
 $openingtime=$_POST['openingtime'];
 $closingtime=$_POST['closingtime'];
+$password_hash = password_hash($password, PASSWORD_BCRYPT);
+
 
 $sql="insert into canteen(canteenname,canteenid,password,email,managername,mobile,location,openingtime,closingtime)
- values('$canteenname','$canteenid','$password','$email','$managername','$mobile','$location','$openingtime','$closingtime')";
+ values('$canteenname','$canteenid','$password_hash','$email','$managername','$mobile','$location','$openingtime','$closingtime')";
 
 $create_table_canteen_order="create table order_$canteenname(id int primary key auto_increment,itemno int(10) unique,
  item_name varchar(30), price int(20));";
