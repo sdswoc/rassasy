@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!(isset($_SESSION['username'])))
+{
+    header("Location: ../html/login.html");
+}
+?>
+
 <html>
 
 <head>
@@ -9,15 +17,7 @@
 </head>
 
 <body>
-<?php
-if(!isset($_SESSION['username']))
-{
-    $host  = $_SERVER['HTTP_HOST'];
-      $uri="/html/login.html";
-      $index_url="http://".$host.$uri;
-header( "Location: $index_url" );
-}
-?>
+
     <div class="body">
         <div class="sidebar">
                 <div class="header">Rassasy<br></div>
@@ -31,6 +31,7 @@ header( "Location: $index_url" );
             <a href="ordernow.php">Order Now</a>
             <a href="pastorder.php">Past Orders</a>
             <a href="userprofile.php">Profile</a>
+            <a href="../php/logout.php">Logout</a>
         </div>
         <div class="orders">
             <div class="content"> A list of canteens open at that
