@@ -25,18 +25,10 @@ item_name varchar(30), price int(20));";
 $conn->query($create_table_canteen_menu);
 
 if ($conn->query($sql)==true) {
-      /* $_SESSION[msg_signup]="Signup Succesful"; */
-      $host  = $_SERVER['HTTP_HOST'];
-      $uri="/html/login.html";
-      $index_url="http://".$host.$uri;
-header( "Location: $index_url" );
+      echo false;
 }
 else {
       echo "Registration failed";
-      $host  = $_SERVER['HTTP_HOST'];
-          $uri="/html/registrationcanteen.html";
-          $index_url="http://".$host.$uri;
-    header( "Location: $index_url" );
     }
     
 $conn->close();

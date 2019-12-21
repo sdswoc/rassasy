@@ -52,9 +52,9 @@ if (!(isset($_SESSION['username'])))
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td><input size=25 type="text" id="itemno" name="itemno" /></td>
-                            <td><input size=25 type="text" id="itemname" name="itemname" /></td>
-                            <td><input size=25 type="text" id="price" name="price" /></td>
+                            <td><input size=25 type="text" id="itemno" name="itemno" required="required"/></td>
+                            <td><input size=25 type="text" id="itemname" name="itemname" required="required"/></td>
+                            <td><input size=25 type="text" id="price" name="price" required="required" /></td>
                             <td><input type="button" id="delbutton" value="Delete" onclick="deleteRow(this)" /></td>
                         </tr>
                     </tbody>
@@ -65,7 +65,6 @@ if (!(isset($_SESSION['username'])))
         </div>
     </div>
     <script>
-        var save = 1;
         var table = document.getElementById('menutable'),
             tbody = table.getElementsByTagName('tbody')[0],
             clone = tbody.rows[0].cloneNode(true);
@@ -73,7 +72,6 @@ if (!(isset($_SESSION['username'])))
         function deleteRow(el) {
             var i = el.parentNode.parentNode.rowIndex;
             table.deleteRow(i);
-            save = 1;
             while (table.rows[i]) {
                 updateRow(table.rows[i], i, false);
                 i++;
@@ -81,13 +79,8 @@ if (!(isset($_SESSION['username'])))
         }
 
         function insertRow() {
-            if (save == 0) {
-                alert("Add previous item to menu first");
-            } else {
                 var new_row = updateRow(clone.cloneNode(true), ++tbody.rows.length, true);
                 tbody.appendChild(new_row);
-                save = '0';
-            }
         }
 
         function updateRow(row, i, reset) {
@@ -125,14 +118,11 @@ if (!(isset($_SESSION['username'])))
                 type: "post",
                 url: "../php/addtomenu.php",
                 data: {
-                    'itemno': itemno_list,
-                    'itemname': itemname_list,
-                    'price': price_list,
+                    add_menu_data
                 },
                 success: function(response) {
                     if (response) {
                         alert("Saved to Menu");
-                        save = '1';
                         inp1.value = inp2.value = inp3.value = '';
                     } else {
                         alert("Connection Error");

@@ -3,11 +3,11 @@ session_start();
 session_regenerate_id(true);
 include('conn.php');
 
-    $e = $_POST['email'];
-    $c = $_POST['classification'];
+    $email = $_POST['email'];
+    $classification = $_POST['classification'];
     $password_string = $_POST['password'];
-    if ($c == "canteen") {
-      $sql = "select * from canteen where email='$e';";
+    if ($classification == "canteen") {
+      $sql = "select * from canteen where email='$email';";
 
       $result = $conn->query($sql);
       $r = $result->fetch_assoc();
@@ -27,13 +27,15 @@ include('conn.php');
           header("Location: $index_url");
         }
         $conn->close();}
-      
-      } if ($result->num_rows == 0) {
-          echo "false";
+        else
+        echo "wrong password";      
+      } 
+      if ($result->num_rows == 0) {
+          echo "user not found";
         }
     }
      else {
-      $sql = "select * from student where email='$e' and password='$p';";
+      $sql = "select * from student where email='$email';";
 
       $result = $conn->query($sql);
       $r = $result->fetch_assoc();
@@ -52,10 +54,12 @@ include('conn.php');
           $index_url = "http://" . $host . $uri;
           header("Location: $index_url");
         }
-        $conn->close(); }
+        $conn->close();}
+        else
+        echo "wrong password"; 
       } 
          if ($result->num_rows == 0) {
-          echo "false";
+          echo "user not found";
 
         }
       }

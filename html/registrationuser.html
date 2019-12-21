@@ -16,7 +16,7 @@
         <div><img class="logo" src="/Images/images.jpeg" alt="" /></div>
         <div class="registration">
           <form method="post">
-            Name: <input type="text" name="name" required="required" /><br />
+            Name: <input type="text" name="name" required="required" id="name"/><br />
             Enrollment No:
             <input type="text" id="enroll" name="enroll" required="required" />
             <br /><label class="error" id="enroll_result"></label>
@@ -52,22 +52,30 @@
             <br /><label id="pass"></label> <br />
 
             Mobile No:
-            <input type="text" name="mobile" required="required" /><br />
+            <input type="text" name="mobile" required="required" id="mobile"/><br />
 
             Bhawan:
-            <select class="bhawan" id="bhawan" required="required">
-              <option value="1">one</option>
-              <option value="2">two</option>
-              <option value="3">three</option>
-              <option value="4">four</option>
+            <select class="bhawan" id="bhawan" required="required" name="bhawan">
+              <option value="Azad">Azad Bhawan</option>
+              <option value="Cautley">Cautley Bhawan</option>
+              <option value="Ganga">Ganga Bhawan</option>
+              <option value="Govind">Govind Bhawan</option>
+              <option value="Indira">Indira Bhawan</option>
+              <option value="Jawahar">Jawahar Bhawan</option>
+              <option value="Kasturba">Kasturba Bhawan</option>
+              <option value="Radhakrishnan">Radhakrishnan Bhawan</option>
+              <option value="Rajendra">Rajendra Bhawan</option>
+              <option value="Rajiv">Rajiv Bhawan</option>
+              <option value="Ravindra">Ravindra Bhawan</option>
+              <option value="Sarojini">Sarojini Bhawan</option>
             </select>
-            Room no: <input type="text" name="room" required="required" /><br />
+            Room no: <input type="text" name="room" required="required" id="room"/><br />
             Email Address:
             <input type="email" name="email" id="email" required="required" />
             <br /><label class="error" id="email_result"></label>
             <br />
 
-            <input type="submit" value="Register" />
+            <input type="button" value="Register" id="submitbutton" />
           </form>
           <a href="../html/login.html">Already have an account? Login.</a>
         </div>
@@ -99,7 +107,11 @@
           }
         });
       });
-
+$("bhawan").click(function(event){
+  var e = document.getElementById("bhawan");
+  var bhawan = e.options[e.selectedIndex].text;
+  console.log(bhawan);
+});
         $("#username").blur(function(event) {
         var input = "username";
         var inputvalue = $("#username").val();
@@ -162,13 +174,16 @@
         });
       });
 
-      $('#btnSubmit').on('click', function(){
+      $('#submitbutton').on('click', function(){
+        console.log("called");
  	var name = $('#name').val();
   var username = $('#username').val();
  	var email = $('#email').val();
  	var password = $('#p').val();
-  var enroll = $('#enroll').val();
   var bhawan = $('#bhawan').val();
+  /* var bhawan = e.options[e.selectedIndex].text; 
+  console.log(bhawan); */
+  var enroll = $('#enroll').val();
   var room = $('#room').val();
   var mobile = $('#mobile').val();
  	if (checkvariable[0]==0 || checkvariable[1]==0) {
@@ -180,7 +195,7 @@
   else{
       // proceed with form submission
       $.ajax({
-      	url: '../php/registeruser.php',
+      	url: '/php/registeruser.php',
       	type: 'post',
       	data: {
           'name' : name,
@@ -193,7 +208,12 @@
           'mobile' : mobile,
       	},
       	success: function(response){
-      		alert('user saved');
+          if (response)
+          {
+            window.location.replace("/html/login.html");
+          }
+          else
+          alert ("Error");
       	}
       });
  	}

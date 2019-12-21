@@ -15,7 +15,7 @@
       <div class="body">
         <div class="registration">
           <form method="POST">
-            Canteen's Name: <input type="text" name="canteenname" /><br />
+            Canteen's Name: <input type="text" name="canteenname" id="canteenname" /><br />
             Canteen ID:
             <input
               type="text"
@@ -50,13 +50,13 @@
             <br /><label class="error" id="email_result"></label>
             <br />
 
-            Managers Name: <input type="text" name="managername" /><br />
-            Mobile No: <input type="text" name="mobile" /><br />
-            Location: <input type="text" name="location" /><br />
-            Opening Time: <input type="time" name="openingtime" /><br />
-            Closing Time: <input type="time" name="closingtime" /><br />
+            Managers Name: <input type="text" name="managername" id="managername" /><br />
+            Mobile No: <input type="text" name="mobile" id="mobile"/><br />
+            Location: <input type="text" name="location" id="location" /><br />
+            Opening Time: <input type="time" name="openingtime" id="openingtime"/><br />
+            Closing Time: <input type="time" name="closingtime" id="closingtime" /><br />
             <label class="error"></label>
-            <input type="submit" id="btnSubmit" value="Register" />
+            <input type="button" id="submitbutton" value="Register" />
           </form>
           <a href="../html/login.html">Already have an account? Login.</a>
         </div>
@@ -132,7 +132,7 @@
         });
       });
 
-      $("#btnSubmit").on("click", function() {
+      $("#submitbutton").on("click", function() {
         var canteenname = $("#canteenname").val();
         var email = $("#email").val();
         var password = $("#password").val();
@@ -140,6 +140,7 @@
         var managername = $("#managername").val();
         var location = $("#location").val();
         var openingtime = $("#openingtime").val();
+        console.log(openingtime);
         var closingtime = $("#closingtime").val();
         var mobile = $("#mobile").val();
         if (checkvar[0] == 0 || checkvar[1] == 0) {
@@ -149,10 +150,9 @@
         } else {
           // proceed with form submission
           $.ajax({
-            url: "registercanteen.php",
+            url: "/php/registercanteen.php",
             type: "post",
             data: {
-              'username': username,
               'email': email,
               'canteenname': canteenname,
               'password': password,
@@ -163,10 +163,15 @@
               'openingtime': openingtime,
               'closingtime': closingtime
             },
-            success: function(response) {
-              alert("user saved");
-            }
-          });
+            success: function(response){
+          if (response)
+          {
+            window.location.replace("/html/login.html");
+          }
+          else
+          alert ("Error");
+      	}
+      });
         }
       });
     </script>
