@@ -22,7 +22,7 @@
             <input type="radio" name="classification" value="canteen" id="classification"/>Canteen
             manager<br />
             <input type="radio" name="classification" value="student" id="classification"/>Student
-            <br /><br /><input type="submit" value=" Login " />
+            <br /><br /><input type="button" value=" Login " id="submitbutton" />
           </form>
           <a href="../html/registration.html"
             >Don't have an account? Register now.</a
@@ -30,5 +30,22 @@
         </div>
       </div>
     </div>
+    <script>
+    $("submitbutton").click(function(event) {
+      var emailinput = $("#email").val();
+      var passwordinput = $("#password").val();
+      var classification = $('input[name=radioName]:checked').val();
+
+      $.ajax({
+          type: "post",
+          url: "../php/login.php",
+          data: {
+              'email' : emailinput,
+              'password' : passwordinput,
+              'classification' : classification
+          },
+      });
+  });
+</script>
   </body>
 </html>
