@@ -47,7 +47,7 @@
               'classification' : classification
           },
           success: function(response){
-          if (response)
+          if (response=="true")
           {
             if(classification=="student") {
             window.location.replace("/html/userhomepage.php"); }
@@ -56,7 +56,7 @@
             }
           }
           else
-          alert ('response');
+          alert (response);
       	}
       });
   });

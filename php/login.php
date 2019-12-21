@@ -46,7 +46,7 @@ include('conn.php');
         $_SESSION['email'] = $r['email'];
         $_SESSION['username'] = $r['username'];
         if ($conn->query($sql) == true) {
-          echo true;
+          echo "true";
          /* $host  = $_SERVER['HTTP_HOST'];
           $uri = "/html/userhomepage.php";
           $index_url = "http://" . $host . $uri;
