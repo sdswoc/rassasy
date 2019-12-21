@@ -33,19 +33,31 @@
       </div>
     </div>
     <script>
-    $("submitbutton").click(function(event) {
+    $("#submitbutton").click(function(event) {
       var emailinput = $("#email").val();
       var passwordinput = $("#password").val();
       var classification = $('input[name=classification]:checked').val();
 
       $.ajax({
           type: "post",
-          url: "../php/login.php",
+          url: "/php/login.php",
           data: {
               'email' : emailinput,
               'password' : passwordinput,
               'classification' : classification
           },
+          success: function(response){
+          if (response)
+          {
+            if(classification=="student") {
+            window.location.replace("/html/userhomepage.php"); }
+            else {
+              window.location.replace("/html/canteenhomepage.php");
+            }
+          }
+          else
+          alert ('response');
+      	}
       });
   });
 </script>

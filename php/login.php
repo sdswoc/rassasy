@@ -21,10 +21,7 @@ include('conn.php');
         $_SESSION['email'] = $r['email'];
         $_SESSION['username'] = $r['canteenname'];
         if ($conn->query($sql) == true) {
-          $host  = $_SERVER['HTTP_HOST'];
-          $uri = "/html/canteenhomepage.php";
-          $index_url = "http://" . $host . $uri;
-          header("Location: $index_url");
+          echo true ;
         }
         $conn->close();}
         else
@@ -49,10 +46,11 @@ include('conn.php');
         $_SESSION['email'] = $r['email'];
         $_SESSION['username'] = $r['username'];
         if ($conn->query($sql) == true) {
-          $host  = $_SERVER['HTTP_HOST'];
+          echo true;
+         /* $host  = $_SERVER['HTTP_HOST'];
           $uri = "/html/userhomepage.php";
           $index_url = "http://" . $host . $uri;
-          header("Location: $index_url");
+          header("Location: $index_url"); */
         }
         $conn->close();}
         else
