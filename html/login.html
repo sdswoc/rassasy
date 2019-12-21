@@ -21,7 +21,7 @@
             Are you a canteen manager or a student?<br />
             <input type="radio" name="classification" value="canteen" id="classification"/>Canteen
             manager<br />
-            <input type="radio" name="classification" value="student" id="classification"/>Student
+            <input type="radio" name="classification" value="student" id="classification" checked/>Student
             <br /><br /><input type="button" value=" Login " id="submitbutton" />
           </form>
           <a href="../html/registration.html"
@@ -34,7 +34,7 @@
     $("submitbutton").click(function(event) {
       var emailinput = $("#email").val();
       var passwordinput = $("#password").val();
-      var classification = $('input[name=radioName]:checked').val();
+      var classification = $('input[name=classification]:checked').val();
 
       $.ajax({
           type: "post",
