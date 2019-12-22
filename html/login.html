@@ -22,7 +22,7 @@
             Password: <input type="password" name="password" id="password"/><br />
             Are you a canteen manager or a student?<br />
             <input type="radio" name="classification" value="canteen" id="classification"/>Canteen
-            manager<br />
+            <br />
             <input type="radio" name="classification" value="student" id="classification" checked/>Student
             <br /><br /><input type="button" value=" Login " id="submitbutton" />
           </form>
@@ -47,7 +47,7 @@
               'classification' : classification
           },
           success: function(response){
-          if (response=="true")
+          if (response==true)
           {
             if(classification=="student") {
             window.location.replace("/html/userhomepage.php"); }

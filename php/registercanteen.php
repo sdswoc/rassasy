@@ -25,7 +25,7 @@ item_name varchar(30), price int(20));";
 $conn->query($create_table_canteen_menu);
 
 if ($conn->query($sql)==true) {
-      echo false;
+      echo "true";
 }
 else {
       echo "Registration failed";

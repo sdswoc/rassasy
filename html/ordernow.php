@@ -20,7 +20,7 @@ if (!(isset($_SESSION['username'])))
 
     <div class="body">
         <div class="sidebar">
-                <div class="header">Rassasy<br></div>
+                <div class="header">Rassasy<br></div> <u>
                 <?php
                 session_start();
                 echo "Hey, ".$_SESSION[username];
