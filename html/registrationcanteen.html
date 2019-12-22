@@ -153,19 +153,20 @@
             url: "/php/registercanteen.php",
             type: "post",
             data: {
-              'email': email,
               'canteenname': canteenname,
-              'password': password,
               'canteenid': canteenid,
+              'password': password,
+              'email': email,
               'managername': managername,
-              'location': location,
               'mobile': mobile,
+              'location': location,
               'openingtime': openingtime,
               'closingtime': closingtime
             },
             success: function(response){
-          if (response=="true")
+          if (response==true)
           {
+            alert ("Successful Registration")
             window.location.replace("/html/login.html");
           }
           else

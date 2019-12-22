@@ -9,7 +9,7 @@ $mobile=$_POST['mobile'];
 $bhawan=$_POST['bhawan'];
 $room=$_POST['room'];
 $email=$_POST['email'];
-$password_hash = password_hash($password, PASSWORD_BCRYPT);
+$password_hash = hash('sha256', $password);
 
 $sql="insert into student(name,enroll,username,password,mobile,bhawan,room,email)
  values('$name','$enroll','$username','$password_hash','$mobile','$bhawan','$room','$email')";
