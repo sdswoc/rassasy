@@ -20,7 +20,7 @@ if (!(isset($_SESSION['username'])))
     
     <div class="body">
         <div class="sidebar">
-                <div class="header">Rassasy<br></div>
+                <div class="header">Rassasy<br></div><u>
                 <?php
                 session_start();
                 echo "Hey, ".$_SESSION[username];
@@ -34,28 +34,61 @@ if (!(isset($_SESSION['username'])))
         </div>
         <div class="orders">
             <div class="content">
-                `Canteen Name`'s menu :
-                <table class="canteenmenu">
+            <table class="canteenmenu">
                     <tr class="canteen-menu-heading">
                         <th> Item No</th>
                         <th> Item Name</th>
                         <th> Price</th>
                         <th>Order</th>
                     </tr>
-                    <tr class="canteen-menu-row">
-                        <td> 01</td>
-                        <td> Coffee</td>
-                        <td> 15</td>
-                        <td><button class="addtocart">Add</button></td>
-                    </tr>
-                </table>
-            </div> </div>
+                <?php
+                
+                $canteenname = $_POST['canteenname'];
+                $sql = "select *from menu_$canteenname where availablity = 1;";
+                $result=$conn->query($sql);
+                        if($result->num_rows>0){
+
+                            while($r=$result->fetch_assoc()){
+
+               echo "<tr class='table_entry'>
+               <td class='table_data' id='itemid'>$r[id]</td>
+               <td class='table_data'>$r[itemno]</td>
+               <td class='table_data'>$r[itemname]</td>
+               <td><input type='button' id='addtocart' /></td>
+               </tr> "; }
+                
+               ?>
+
+                    
+    </div>
+    </div>
     </div>
     <div class="footer">
         <div>Total Sum: </div>
         <div><a href="ordersummary.php">
         <button class="viewcart">View Cart</button></a></div>
-    </div>
+    </div> 
+    <script>
+    $("#addtocart").click(function(event) {
+            var itemid = $("#itemid").val();
+            
+            $.ajax({
+                type: "post",
+                url: "../php/updatedb.php",
+                data: {
+                    'itemid' : id 
+                },
+                success: function(response) {
+                    if (response==true) {
+                        alert("updated");
+                    } else {
+                        alert("Connection Error");
+                    }
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>
