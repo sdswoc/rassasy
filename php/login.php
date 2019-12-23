@@ -48,10 +48,6 @@ include('conn.php');
         $_SESSION['username'] = $r['username'];
         if ($conn->query($sql) == true) {
           echo true;
-          /* $host  = $_SERVER['HTTP_HOST'];
-          $uri = "/html/userhomepage.php";
-          $index_url = "http://" . $host . $uri;
-          header("Location: $index_url"); */
         }
         $conn->close();}
         else

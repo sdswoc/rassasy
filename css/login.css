@@ -5,6 +5,10 @@ body {
   margin: 0px;
   padding: 0px;
   position: relative;
+  background-image: url("/Images/bg.jpg");
+  width: 100%;
+  height: 100%;
+  background-position: center;
 }
 
 .header {
@@ -24,10 +28,8 @@ body {
   width: 100%;
 }
 .login-container {
-  background-image: url("/Images/bg.jpg");
   width: 100%;
   height: 100%;
-  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -135,12 +135,11 @@
       $("#submitbutton").on("click", function() {
         var canteenname = $("#canteenname").val();
         var email = $("#email").val();
-        var password = $("#password").val();
+        var password = $("#p").val();
         var canteenid = $("#canteenid").val();
         var managername = $("#managername").val();
         var location = $("#location").val();
         var openingtime = $("#openingtime").val();
-        console.log(openingtime);
         var closingtime = $("#closingtime").val();
         var mobile = $("#mobile").val();
         if (checkvar[0] == 0 || checkvar[1] == 0) {
@@ -166,7 +165,7 @@
             success: function(response){
           if (response==true)
           {
-            alert ("Successful Registration")
+            alert ("Successful Registration");
             window.location.replace("/html/login.html");
           }
           else

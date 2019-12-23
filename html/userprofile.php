@@ -19,7 +19,12 @@ if (!(isset($_SESSION['username'])))
     <div class="user-container">
       <div class="body">
         <div class="sidebar">
-          <div class="header">Rassasy<br /></div>
+          <div class="header">Rassasy<br /></div><u>
+                <?php
+                session_start();
+                echo "Hey, ".$_SESSION[username];
+                ?> </u>
+                <hr>
           <a href="userhomepage.php">Ongoing Orders</a>
           <a href="ordernow.php">Order Now</a>
           <a href="pastorder.php">Past Orders</a>
