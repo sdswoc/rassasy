@@ -13,6 +13,8 @@ if (!(isset($_SESSION['username'])))
         Rassasy
     </title>
     <link rel="stylesheet" href="../css/userhomepage.css">
+    <script type="text/javascript" src="../JS/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
 
@@ -44,7 +46,7 @@ if (!(isset($_SESSION['username'])))
                 <?php
                 
                 $canteenname = $_POST['canteenname'];
-                $sql = "select *from menu_$canteenname where availablity = 1;";
+                $sql = "select *from menu_$canteenname where availablity = '1';";
                 $result=$conn->query($sql);
                         if($result->num_rows>0){
 
@@ -52,41 +54,63 @@ if (!(isset($_SESSION['username'])))
 
                echo "<tr class='table_entry'>
                <td class='table_data' id='itemid'>$r[id]</td>
-               <td class='table_data'>$r[itemno]</td>
-               <td class='table_data'>$r[itemname]</td>
-               <td><input type='button' id='addtocart' /></td>
-               </tr> "; }
-                
+               <td class='table_data' id='itemno'>$r[itemno]</td>
+               <td class='table_data' id='itemname'>$r[itemname]</td>
+               <td><input type='button' id='addtocart' onclick='addtocart(this)' /></td>
+               </tr> " ; }                
                ?>
-
-                    
+                  
     </div>
     </div>
     </div>
     <div class="footer">
         <div>Total Sum: </div>
-        <div><a href="ordersummary.php">
-        <button class="viewcart">View Cart</button></a></div>
+        <div class="sum" id="sum"></div>
+        <div>
+        <button class="viewcart">View Cart</button></div>
     </div> 
     <script>
-    $("#addtocart").click(function(event) {
-            var itemid = $("#itemid").val();
-            
+        var sum = 0;
+        var i = 0 ;
+
+        function addtocart(event) {
+            sum = sum + r[price];
+        $("#sum").html(sum);
+        
+            var itemno;
+            var itemname;
+            var addtocartdata = [];
+                i++;
+                var data_row = {
+                    'itemno': $("#itemno").val(),
+                    'itemname':  $("#itemname").val()
+                }
+                addtocartdata.push(data_row);
+        
+        }
+
+    $("#viewcart").click(function(event) {
+
+        /*              
             $.ajax({
                 type: "post",
-                url: "../php/updatedb.php",
+                url: "../php/orderdb.php",
                 data: {
-                    'itemid' : id 
+                    addtocartdata[],
+                    'size': i,
+                    'total': sum
                 },
                 success: function(response) {
                     if (response==true) {
-                        alert("updated");
+                        alert("Added to Cart!");
                     } else {
                         alert("Connection Error");
                     }
                 }
             });
-        });
+        });  */
+
+        
     </script>
 
 </body>

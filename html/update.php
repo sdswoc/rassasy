@@ -64,7 +64,7 @@ if (!(isset($_SESSION['username'])))
                                 <td class='table_data' id='itemid'>$r[id]</td>
                                 <td class='table_data'>$r[itemno]</td>
                                 <td class='table_data'>$r[itemname]</td>
-                                <td><input type='toggle' id='updatebutton' value='availability' /></td>
+                                <td><input type='checkbox' id='updatebutton' value='availability' /></td>
                                 </tr> "; }
 
                         ?>                        
@@ -75,7 +75,7 @@ if (!(isset($_SESSION['username'])))
     </div>
 </div>
 <script>
-    /* 1.check for on off of toggle button. update availability acc
+    /* 1.check for on off of checkbox button. update availability acc
     2.update availabilty to 1 on every successful logout of canteen
     3. add row in table
     4. add canteen on off in table */

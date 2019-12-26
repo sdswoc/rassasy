@@ -13,6 +13,8 @@ if (!(isset($_SESSION['username'])))
         Rassasy
     </title>
     <link rel="stylesheet" href="../css/userhomepage.css">
+    <script type="text/javascript" src="../JS/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
 
@@ -48,7 +50,7 @@ if (!(isset($_SESSION['username'])))
                     <tbody> 
             <?php
             include('conn.php');
-            $sql = "select * from canteen where open='1'; ";
+            $sql = "select * from canteen where status = '1'; ";
                 $result=$conn->query($sql);
                     if($result->num_rows>0){
 
@@ -57,10 +59,12 @@ if (!(isset($_SESSION['username'])))
                                 <td class='table_data' id='canteenid'>$r[id]</td>
                                 <td class='table_data' id='canteenname'>$r[canteenname]</td>
                                 <td class='table_data'>$r[location]</td>
-                                <td><input type='button' id='canteenselectionbutton' /></td>
+                                <td><input type='button' id='canteenselectionbutton' value='select' /></td>
                                 </tr> ";
             
             ?>
+                    </tbody>
+            </table>
             </div>
 
         </div>
@@ -71,7 +75,7 @@ if (!(isset($_SESSION['username'])))
             
             $.ajax({
                 type: "post",
-                url: "../php/updatedb.php",
+                url: "../html/ordermenu.php",
                 data: {
                     'canteenname' : canteenname
                 }

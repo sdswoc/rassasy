@@ -46,6 +46,7 @@ include('conn.php');
         $_SESSION['name'] = $r['name'];
         $_SESSION['email'] = $r['email'];
         $_SESSION['username'] = $r['username'];
+        $_SESSION['mobile'] = $r['mobile'];
         if ($conn->query($sql) == true) {
           echo true;
         }

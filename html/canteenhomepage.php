@@ -33,8 +33,25 @@ if (!(isset($_SESSION['username'])))
                 <a href="update.php">Update</a> 
                 <a href="../php/logout.php">Logout</a>
         </div>
-        <div class="orders"> Pending orders are displayed here.</div>
+        <div class="orders"> 
+            <div class="switch">Are you ready to open the shop?
+            <label class="switch">
+            <input type="checkbox" id="switch" >
+            <span class="slider round"></span>
+            </label>
+            </div>
+        </div>
     </div>
-</body>
+    <script>
+        $("#switch").click(function(event)
+        {
+            var switchinput = 
 
+
+
+        });
+
+    
+    </script>
+</body>
 </html>
