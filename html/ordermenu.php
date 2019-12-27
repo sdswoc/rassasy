@@ -19,7 +19,7 @@ if (!(isset($_SESSION['username']))) {
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -59,7 +59,7 @@ if (!(isset($_SESSION['username']))) {
                               <td class='table_data' id='itemname'>$r[itemname]</td>
                               <td class='table_data' id='price'>$r[price]</td>
                               <td class='table-data'>
-                              <a href=# data-no='$r[itemno]' data-name='$r[itemname]' data-price='$r[price]' class='addtocart btn btn-primary'>Add to cart</a>
+                              <a href='#' data-no='$r[itemno]' data-name='$r[itemname]' data-price='$r[price]' class='add-to-cart btn btn-primary'>Add to cart</a>
                               </td>
                             </tr> ";
                         }
@@ -82,7 +82,7 @@ if (!(isset($_SESSION['username']))) {
                     <table class="show-cart table">
 
                     </table>
-                    <div>Total price: $<span class="total-cart"></span></div>
+                    <div>Total price: <span class="total-cart"></span></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -92,10 +92,9 @@ if (!(isset($_SESSION['username']))) {
         </div>
     </div>
 
-
     <div class="footer">
         <div class="column">
-            <div class="total-price">Total Sum:<span class="total-cart"></span></div>
+            <div class="total-price">Total Sum: <span class="total-cart"></span></div>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart">Cart (<span class="total-count"></span>)</button>
             <button class="clear-cart btn btn-danger">Clear Cart</button>
         </div>

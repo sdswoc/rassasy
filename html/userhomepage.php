@@ -34,7 +34,28 @@ if (!(isset($_SESSION['username'])))
             <a href="../php/logout.php">Logout</a>
         </div>
         <div class="orders">
-            <div class="content"> Ongoing orders are displayed here.
+            <div class="content"> Ongoing orders are displayed here:
+            <?php
+            include('../php/conn.php');
+            $studentid=$_SESSION['id'];
+            $sql = "select * from canteen where status = '1'; ";
+                $result=$conn->query($sql);
+                    if($result->num_rows>0){
+                                while($r=$result->fetch_assoc()){
+                                    $canteenname = $r['canteenname'];
+                                    $findorder = "select * from order_$canteenname where student_id = '$studentid'; "; 
+                                echo " <tr class='table_entry'>
+                                <td class='table_data' id='canteenid'>$r[id]</td>
+                                <td class='table_data' id='canteenname'>$r[canteenname]</td>
+                                <td class='table_data'>$r[location]</td>
+                                <td><a href='ordermenu.php?canteenname=$r[canteenname]' />Order</td>
+                                </tr> "; } 
+                            }
+                            else 
+                            echo " No Canteen Found";
+
+            
+            ?>
 
             </div>
         </div>
