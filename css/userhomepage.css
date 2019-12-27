@@ -3,7 +3,6 @@
 body {
   margin: 0px;
   padding: 0px;
-  background-color: thistle;
 }
 
 ::-webkit-scrollbar {
@@ -13,6 +12,7 @@ body {
 .body {
   width: 100%;
   background-color: thistle;
+  height: 100%;
 }
 
 /*.logo {

@@ -1,7 +1,8 @@
 var shoppingCart = (function() {
     cart = [];
     
-    function Item(name, price, count) {
+    function Item(name, price, count) { 
+      this.no = no
       this.name = name;
       this.price = price;
       this.count = count;
@@ -110,7 +111,7 @@ var shoppingCart = (function() {
     displayCart();
   });
   
-  $('.clearcart').click(function() {
+  $('.clear-cart').click(function() {
     shoppingCart.clearCart();
     displayCart();
   });
@@ -134,6 +135,27 @@ var shoppingCart = (function() {
     $('.total-cart').html(shoppingCart.totalCart());
     $('.total-count').html(shoppingCart.totalCount());
   }
+
+  $("#order-now").click(function(){
+    var cartArray = shoppingCart.listCart();
+    $.ajax({
+      type: "post",
+      url: "../php/ordersummary.php",
+      data: {
+          cartArray,
+          'canteenname': canteenname
+      },
+      success: function(response) {
+          if (response) {
+              alert("Order Succesfully Placed");
+              window.location.replace("../html/userhomepage.php");
+          } else {
+              alert("Connection Error");
+          }
+      }
+  });
+
+  })
   
     $('.show-cart').on("click", ".delete-item", function(event) {
     var name = $(this).data('name')
