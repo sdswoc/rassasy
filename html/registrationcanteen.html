@@ -15,7 +15,8 @@
       <div class="body">
         <div class="registration">
           <form method="POST">
-            Canteen's Name: <input type="text" name="canteenname" id="canteenname" /><br />
+            Canteen's Name:
+            <input type="text" name="canteenname" id="canteenname" /><br />
             Canteen ID:
             <input
               type="text"
@@ -50,11 +51,14 @@
             <br /><label class="error" id="email_result"></label>
             <br />
 
-            Managers Name: <input type="text" name="managername" id="managername" /><br />
-            Mobile No: <input type="text" name="mobile" id="mobile"/><br />
+            Managers Name:
+            <input type="text" name="managername" id="managername" /><br />
+            Mobile No: <input type="text" name="mobile" id="mobile" /><br />
             Location: <input type="text" name="location" id="location" /><br />
-            Opening Time: <input type="time" name="openingtime" id="openingtime"/><br />
-            Closing Time: <input type="time" name="closingtime" id="closingtime" /><br />
+            Opening Time:
+            <input type="time" name="openingtime" id="openingtime" /><br />
+            Closing Time:
+            <input type="time" name="closingtime" id="closingtime" /><br />
             <label class="error"></label>
             <input type="button" id="submitbutton" value="Register" />
           </form>
@@ -152,26 +156,23 @@
             url: "/php/registercanteen.php",
             type: "post",
             data: {
-              'canteenname': canteenname,
-              'canteenid': canteenid,
-              'password': password,
-              'email': email,
-              'managername': managername,
-              'mobile': mobile,
-              'location': location,
-              'openingtime': openingtime,
-              'closingtime': closingtime
+              canteenname: canteenname,
+              canteenid: canteenid,
+              password: password,
+              email: email,
+              managername: managername,
+              mobile: mobile,
+              location: location,
+              openingtime: openingtime,
+              closingtime: closingtime
             },
-            success: function(response){
-          if (response==true)
-          {
-            alert ("Successful Registration");
-            window.location.replace("/html/login.html");
-          }
-          else
-          alert ("Error");
-      	}
-      });
+            success: function(response) {
+              if (response == true) {
+                alert("Successful Registration. Login to Proceed.");
+                window.location.replace("/html/login.html");
+              } else alert("Error");
+            }
+          });
         }
       });
     </script>

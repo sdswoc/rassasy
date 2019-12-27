@@ -3,12 +3,9 @@ session_start();
 include('conn.php');
 
 $id = $_SESSION['id'];
-$canteenname = $_SESSION['username'];
-$tablename = "menu_$canteenname";
-$itemid = $_POST['itemid'];
 $status = $_POST['status'];
 
-$sql = "update $tablename set availability = '$status'  where id = '$itemid';"; 
+$sql = "update canteen set status = '$status'  where id = '$id';"; 
     if ($conn->query($sql)) {
         echo true;
     }

@@ -16,7 +16,13 @@
         <div><img class="logo" src="/Images/images.jpeg" alt="" /></div>
         <div class="registration">
           <form method="post">
-            Name: <input type="text" name="name" required="required" id="name"/><br />
+            Name:
+            <input
+              type="text"
+              name="name"
+              required="required"
+              id="name"
+            /><br />
             Enrollment No:
             <input type="text" id="enroll" name="enroll" required="required" />
             <br /><label class="error" id="enroll_result"></label>
@@ -52,10 +58,20 @@
             <br /><label id="pass"></label> <br />
 
             Mobile No:
-            <input type="text" name="mobile" required="required" id="mobile"/><br />
+            <input
+              type="text"
+              name="mobile"
+              required="required"
+              id="mobile"
+            /><br />
 
             Bhawan:
-            <select class="bhawan" id="bhawan" required="required" name="bhawan">
+            <select
+              class="bhawan"
+              id="bhawan"
+              required="required"
+              name="bhawan"
+            >
               <option value="Azad">Azad Bhawan</option>
               <option value="Cautley">Cautley Bhawan</option>
               <option value="Ganga">Ganga Bhawan</option>
@@ -69,7 +85,13 @@
               <option value="Ravindra">Ravindra Bhawan</option>
               <option value="Sarojini">Sarojini Bhawan</option>
             </select>
-            Room no: <input type="text" name="room" required="required" id="room"/><br />
+            Room no:
+            <input
+              type="text"
+              name="room"
+              required="required"
+              id="room"
+            /><br />
             Email Address:
             <input type="email" name="email" id="email" required="required" />
             <br /><label class="error" id="email_result"></label>
@@ -83,7 +105,7 @@
     </div>
 
     <script>
-      let checkvariable=[0,0,0,0];
+      let checkvariable = [0, 0, 0, 0];
 
       $("#enroll").blur(function(event) {
         var input = "enroll";
@@ -102,17 +124,17 @@
               alert("Enrollment Number Already Exists");
             } else {
               $("#enroll_result").empty();
-              checkvariable[0]=1;
+              checkvariable[0] = 1;
             }
           }
         });
       });
-$("bhawan").click(function(event){
-  var e = document.getElementById("bhawan");
-  var bhawan = e.options[e.selectedIndex].text;
-  console.log(bhawan);
-});
-        $("#username").blur(function(event) {
+      $("bhawan").click(function(event) {
+        var e = document.getElementById("bhawan");
+        var bhawan = e.options[e.selectedIndex].text;
+        console.log(bhawan);
+      });
+      $("#username").blur(function(event) {
         var input = "username";
         var inputvalue = $("#username").val();
         let tablename = "student";
@@ -129,11 +151,11 @@ $("bhawan").click(function(event){
               alert("username Already Exists");
             } else {
               $("#username_result").empty();
-              checkvariable[1]=1;
+              checkvariable[1] = 1;
             }
           }
         });
-        });
+      });
 
       function pass_check() {
         var p = document.getElementById("p").value;
@@ -146,7 +168,7 @@ $("bhawan").click(function(event){
           } else {
             var msg = "Passwords match".fontcolor("green");
             document.getElementById("pass").innerHTML = msg;
-            checkvariable[2]=1;
+            checkvariable[2] = 1;
           }
         }
       }
@@ -168,56 +190,52 @@ $("bhawan").click(function(event){
               alert("Email Already Exists");
             } else {
               $("#email_result").empty();
-              checkvariable[3]=1;
+              checkvariable[3] = 1;
             }
           }
         });
       });
 
-      $('#submitbutton').on('click', function(){
+      $("#submitbutton").on("click", function() {
         console.log("called");
- 	var name = $('#name').val();
-  var username = $('#username').val();
- 	var email = $('#email').val();
- 	var password = $('#p').val();
-  var bhawan = $('#bhawan').val();
-  /* var bhawan = e.options[e.selectedIndex].text; 
+        var name = $("#name").val();
+        var username = $("#username").val();
+        var email = $("#email").val();
+        var password = $("#p").val();
+        var bhawan = $("#bhawan").val();
+        /* var bhawan = e.options[e.selectedIndex].text; 
   console.log(bhawan); */
-  var enroll = $('#enroll').val();
-  var room = $('#room').val();
-  var mobile = $('#mobile').val();
- 	if (checkvariable[0]==0 || checkvariable[1]==0) {
-	  $('#error').text('Fix the errors in the form first');
-	}
-  else if (checkvariable[2]==0 || checkvariable[3]==0) {
-    $('#error').text('Fix the errors in the form first');
-  }
-  else{
-      // proceed with form submission
-      $.ajax({
-      	url: '/php/registeruser.php',
-      	type: 'post',
-      	data: {
-          'name' : name,
-          'username' : username,
-      		'email' : email,
-      		'password' : password,
-          'enroll' : enroll,
-          'bhawan' : bhawan,
-          'room' : room,
-          'mobile' : mobile,
-      	},
-      	success: function(response){
-          if (response==true)
-          {
-            window.location.replace("/html/login.html");
-          }
-          else
-          alert ("Error");
-      	}
+        var enroll = $("#enroll").val();
+        var room = $("#room").val();
+        var mobile = $("#mobile").val();
+        if (checkvariable[0] == 0 || checkvariable[1] == 0) {
+          $("#error").text("Fix the errors in the form first");
+        } else if (checkvariable[2] == 0 || checkvariable[3] == 0) {
+          $("#error").text("Fix the errors in the form first");
+        } else {
+          // proceed with form submission
+          $.ajax({
+            url: "/php/registeruser.php",
+            type: "post",
+            data: {
+              name: name,
+              username: username,
+              email: email,
+              password: password,
+              enroll: enroll,
+              bhawan: bhawan,
+              room: room,
+              mobile: mobile
+            },
+            success: function(response) {
+              if (response == true) {
+                alert("Successful Registration. Login to Proceed.");
+                window.location.replace("/html/login.html");
+              } else alert("Error");
+            }
+          });
+        }
       });
- 	}
- });
     </script>
   </body>
 </html>

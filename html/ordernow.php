@@ -22,12 +22,12 @@ if (!(isset($_SESSION['username'])))
 
     <div class="body">
         <div class="sidebar">
-                <div class="header">Rassasy<br></div> <u>
+                <div class="header">Rassasy<br /></div> <u>
                 <?php
                 session_start();
-                echo "Hey, ".$_SESSION[username];
+                echo "Hey, ".$_SESSION['username'];
                 ?> </u>
-                <hr>
+                <hr />
             
             <a href="userhomepage.php">Ongoing Orders</a>
             <a href="ordernow.php">Order Now</a>
@@ -44,12 +44,12 @@ if (!(isset($_SESSION['username'])))
                             <td>Canteen ID</td>
                             <td>Canteen Name</td>
                             <td>Location</td>
-                            <td>""</td>
+                            <td>          </td>
                         </tr>
                     </thead>
                     <tbody> 
             <?php
-            include('conn.php');
+            include('../php/conn.php');
             $sql = "select * from canteen where status = '1'; ";
                 $result=$conn->query($sql);
                     if($result->num_rows>0){
@@ -59,8 +59,12 @@ if (!(isset($_SESSION['username'])))
                                 <td class='table_data' id='canteenid'>$r[id]</td>
                                 <td class='table_data' id='canteenname'>$r[canteenname]</td>
                                 <td class='table_data'>$r[location]</td>
-                                <td><input type='button' id='canteenselectionbutton' value='select' /></td>
-                                </tr> ";
+                                <td><a href='ordermenu.php?canteenname=$r[canteenname]' />Order</td>
+                                </tr> "; } 
+                            }
+                            else 
+                            echo " No Canteen Found";
+
             
             ?>
                     </tbody>
@@ -70,8 +74,9 @@ if (!(isset($_SESSION['username'])))
         </div>
     </div>
     <script>
+        /*
         $("#canteenselectionbutton").click(function(event) {
-            var canteenname = $("#canteenname").val();
+            var canteenname = $(this).data('name');
             
             $.ajax({
                 type: "post",
@@ -81,7 +86,7 @@ if (!(isset($_SESSION['username'])))
                 }
             });
         });
-
+*/
 
     </script>
 </body>

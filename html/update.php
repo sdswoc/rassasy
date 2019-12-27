@@ -1,7 +1,6 @@
 <?php
 session_start();
-if (!(isset($_SESSION['username'])))
-{
+if (!(isset($_SESSION['username']))) {
     header("Location: ../html/login.html");
 }
 ?>
@@ -22,84 +21,103 @@ if (!(isset($_SESSION['username'])))
 
     <div class="body">
         <div class="sidebar">
-                <div class="header">Rassasy<br></div>
-                <u>
-                    <?php
-                    session_start();
-                    echo "Hey, " . $_SESSION['username'];
-                    ?> </u>
-                <hr>
-                <a href="canteenhomepage.php">Pending Orders</a>
-                <a href="allorder.php">All Orders</a>
-                <a href="menu.php">Menu</a>
-                <a href="update.php">Update</a> 
-                <a href="../php/logout.php">Logout</a>
+            <div class="header">Rassasy<br></div>
+            <u>
+                <?php
+                session_start();
+                echo "Hey, " . $_SESSION['username'];
+                ?> </u>
+            <hr>
+            <a href="canteenhomepage.php">Pending Orders</a>
+            <a href="allorder.php">All Orders</a>
+            <a href="menu.php">Menu</a>
+            <a href="update.php">Update</a>
+            <a href="../php/logout.php">Logout</a>
         </div>
-        <div class="update"> Update the availabilty of food items in your menu: 
-        <div class="menu">
-            <div id="menutablediv">
+        <div class="update"> Update the availabilty of food items in your menu:
+            <div class="menu">
+                <div id="menutablediv">
 
-                <table id="menutable" border="1">
-                    <thead>
-                        <tr>
-                            <td>S. No.</td>
-                            <td>Item No</td>
-                            <td>Item Name</td>
-                            <td>Availabilty</td>
-                        </tr>
-                    </thead>
-                    <tbody> 
-                        <?php
-                        include('conn.php');
-                        session_start();
-                        $canteenname = $_SESSION['username'];
-                        $id = $_SESSION['id'];
+                    <table id="menutable" border="1">
+                        <thead>
+                            <tr>
+                                <td>S. No.</td>
+                                <td>Item No</td>
+                                <td>Item Name</td>
+                                <td>Availabilty</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            include('../php/conn.php');
+                            $canteenname = $_SESSION['username'];
+                            $tablename = "menu_$canteenname";
 
-                        $sql = "select * from menu_$canteenname; ";
-                        $result=$conn->query($sql);
-                        if($result->num_rows>0){
+                            $sql = "select * from $tablename ; ";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
 
-                            while($r=$result->fetch_assoc()){
-                                echo " <tr class='table_entry'>
-                                <td class='table_data' id='itemid'>$r[id]</td>
-                                <td class='table_data'>$r[itemno]</td>
-                                <td class='table_data'>$r[itemname]</td>
-                                <td><input type='checkbox' id='updatebutton' value='availability' /></td>
-                                </tr> "; }
+                                while ($r = $result->fetch_assoc()) {
+                                    echo " if(r[availability]==1)
+                                $rcheck==true;
+                                else
+                                $rcheck==false;
+                                <tr>
+                                <td>$r[id]</td>
+                                <td>$r[itemno]</td>
+                                <td>$r[itemname]</td>
+                                <td>
+                                <div class='toggle-btn active'>
+                                <input type='checkbox'  defaultChecked=$rcheck class='updatebutton' data-itemid='$r[id]' />
+                                <span class='round-btn'></span>
+                                </div>
+                                </td>
+                                </tr> ";
+                                }
+                            } else
+                                echo "No entries in menu";
 
-                        ?>                        
-                    </tbody>
-                </table>
-            </div>       
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<script>
-    /* 1.check for on off of checkbox button. update availability acc
+    <script>
+        /* 1.check for on off of checkbox button. update availability acc
     2.update availabilty to 1 on every successful logout of canteen
     3. add row in table
     4. add canteen on off in table */
+        $("#updatebutton").click(function(event) {
+            var status;
+            var itemid = $(this).data("itemid");
+            var mainParent = $(this).parent('.toggle-btn');
 
+            if ($(mainParent).find('input.updatebutton').is(':checked')) {
+                status = 1;
+                $(mainParent).addClass('active');
+            } else {
+                status = 0;
+                $(mainParent).removeClass('active');
+            }
 
-$("#updatebutton").click(function(event) {
-            var itemid = $("#itemid").val();
-            
             $.ajax({
                 type: "post",
                 url: "../php/updatedb.php",
                 data: {
-                    'itemid' : id 
+                    'status': status,
+                    'itemid': itemid
                 },
                 success: function(response) {
-                    if (response==true) {
-                        alert("updated");
+                    if (response == true) {
+                        alert("Updated");
                     } else {
                         alert("Connection Error");
                     }
                 }
             });
         });
-
     </script>
 
 </body>

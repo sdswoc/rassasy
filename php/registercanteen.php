@@ -14,8 +14,9 @@ $closingtime = $_POST['closingtime'];
 
 $sql = "insert into canteen(canteenname, canteenid, password, email, managername, mobile, location, openingtime, closingtime)
  values('$canteenname','$canteenid','$password_hash','$email','$managername','$mobile','$location','$openingtime','$closingtime')";
-$create_table_canteen_order = "create table order_$canteenname(id int primary key auto_increment,itemno int(10),
- item_name varchar(30), orderid int(10), student_name varchar(20), student_mobile int(10), status int(2) default=0);";
+
+$create_table_canteen_order = "create table order_$canteenname(id int primary key auto_increment, itemno int(10),
+ item_name varchar(30), orderid int(10), student_name varchar(20), student_mobile int(10), status int(2));";
 
 $create_table_canteen_menu = "create table menu_$canteenname(id int primary key auto_increment,itemno int(10) unique,
 item_name varchar(30), price int(20), status int(2));";
