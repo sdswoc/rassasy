@@ -137,19 +137,20 @@ var shoppingCart = (function() {
     $('.total-count').html(shoppingCart.totalCount());
   }
 
-  $('#order-now').click(function(){
+  $("#order-now").click(function() {
     var cartArray = shoppingCart.listCart();
     $.ajax({
       type: "post",
       url: "../php/ordersummary.php",
       data: {
           cartArray,
-          'canteenname': canteenname
       },
       success: function(response) {
-          if (response) {
+          if (response==true) {
               alert("Order Succesfully Placed");
+              clearCart();
               window.location.replace("../html/userhomepage.php");
+
           } else {
               alert("Connection Error");
           }

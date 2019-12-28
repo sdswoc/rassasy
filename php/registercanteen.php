@@ -16,7 +16,7 @@ $sql = "insert into canteen(canteenname, canteenid, password, email, managername
  values('$canteenname','$canteenid','$password_hash','$email','$managername','$mobile','$location','$openingtime','$closingtime')";
 
 $create_table_canteen_order = "create table order_$canteenname(id int primary key auto_increment, itemno int(10),
- itemname varchar(30),quantity int(2), orderid int(10),price int(5),total int(5), student_name varchar(20), student_mobile int(10), student_id int(10), status int(2));";
+ itemname varchar(30),count int(2), orderid int(10),price int(5),total int(5), student_name varchar(20), student_mobile varchar(15), student_id int(10), status int(2));";
 
 $create_table_canteen_menu = "create table menu_$canteenname(id int primary key auto_increment,itemno int(10) unique,
 itemname varchar(30), price int(20), status int(2));";

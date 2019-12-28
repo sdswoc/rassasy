@@ -11,16 +11,17 @@ $canteenname = $_SESSION['canteenname'];
 $studentname = $_SESSION['name'];
 $studentmobile = $_SESSION['mobile'];
 $studentid = $_SESSION['id'];
-$takeid = "select * from order_$canteenname groupby 'orderid' DESC limit 1 ; ";
-if ($conn->query($takeid))
+$takeid = "select * from order_$canteenname order by id DESC limit 1 ; ";
+$result = $conn->query($takeid);
+if ($result->num_rows>0)
 {
-    $result = $conn->query($sql);
-    $orderid = $result['orderid']+1 ;
+    $r = $result->fetch_assoc();
+    $orderid = $r['orderid'] + 1 ;
 }
-else 
-$orderid = 0 ;
+else {
+$orderid = 1 ;  }
 
-$flag=false;
+$flag = false;
 
 foreach ($cartArray as $key => $row) {
     $itemno = $row['no'];
@@ -28,11 +29,12 @@ foreach ($cartArray as $key => $row) {
     $count = $row['count'];
     $price = $row['price'];
     $total = $row['total'];
-    $sql = "insert into order_$canteenname(itemno, itemname, quantity, orderid, price, total, student_name, student_mobile, student_id, status)
+    $sql = "insert into order_$canteenname(itemno, itemname, count, orderid, price, total, student_name, student_mobile, student_id, status)
     values ('$itemno','$itemname','$count','$orderid','$price','$total','$studentname','$studentmobile','$studentid','0') ;";
     if ($conn->query($sql)) {
-        $flag=true ; }
+        $flag = true ; }
     }
     echo $flag;
+    var_dump($flag);
 $conn->close();
 ?>
