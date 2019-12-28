@@ -67,7 +67,7 @@ if (!(isset($_SESSION['username']))) {
                     ";
                     while ($r = $result->fetch_assoc()) {
                         echo $r['orderid'];
-                                echo " <tr class='table_entry'>
+                        echo " <tr class='table_entry'>
                                 <td class='table_data'>$r[itemno]</td>
                                 <td class='table_data'>$r[itemname]</td>
                                 <td class='table_data'>$r[count]</td>
@@ -80,12 +80,12 @@ if (!(isset($_SESSION['username']))) {
                                 <input type='checkbox' class='updateorderstatus' data-id='$r[id]'>
                                 <span class='sliderround'></span></div></td>
                                 </tr> ";
-                            }                                         
-                }
-                 else
+                    }
+                } else
                     echo " No pending orders";
-                    echo "</tbody>
-            </table> " ;
+                echo "</tbody>
+            </table> ";
+                $conn->close();
                 ?>
             </div>
         </div>
@@ -101,7 +101,6 @@ if (!(isset($_SESSION['username']))) {
                 status = 0;
                 $(mainParent).removeClass('active');
             }
-            console.log(status);
 
             $.ajax({
                 type: "post",
@@ -130,11 +129,10 @@ if (!(isset($_SESSION['username']))) {
                 status = 0;
                 $(mainParent).removeClass('active');
             }
-            console.log(status);
 
             $.ajax({
                 type: "post",
-                url: "../php/canteenopen.php",
+                url: "../php/updateorderstatus.php",
                 data: {
                     'status': status,
                     'orderupdateid': orderupdateid

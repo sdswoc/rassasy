@@ -2,7 +2,6 @@
 session_start();
 include('conn.php');
 
-$id = $_SESSION['id'];
 $canteenname = $_SESSION['username'];
 $tablename = "menu_$canteenname";
 $itemid = $_POST['itemid'];

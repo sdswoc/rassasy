@@ -86,7 +86,6 @@ if (!(isset($_SESSION['username']))) {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" id="order-now">Order now</button>
                         </div>
                     </div>
                 </div>
@@ -96,6 +95,7 @@ if (!(isset($_SESSION['username']))) {
                 <div class="column">
                     <div class="total-price">Total Sum: <span class="total-cart"></span></div>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cart">Cart (<span class="total-count"></span>)</button>
+                    <button type="button" class="btn btn-primary" id="order-now">Order now</button>
                     <button class="clear-cart btn btn-danger">Clear Cart</button>
                 </div>
             </div>

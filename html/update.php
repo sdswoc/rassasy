@@ -56,25 +56,30 @@ if (!(isset($_SESSION['username']))) {
                             $sql = "select * from $tablename ; ";
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
-
                                 while ($r = $result->fetch_assoc()) {
-                                if($r['availability']==1)
-                                $rcheck==true;
-                                else
-                                $rcheck==false;
                                 echo "
                                 <tr>
                                 <td>$r[id]</td>
                                 <td>$r[itemno]</td>
-                                <td>$r[itemname]</td>
-                                <td>
+                                <td>$r[itemname]</td> " ;
+                                if($r['availability']==1) {
+                                echo "    <td>
                                 <div class='togglebutton'>
-                                <input type='checkbox' class='updatebutton' data-id='$r[id]'>
-                                <span class='sliderround'></span></div></td>
-                                </tr> ";
+                                <input type='checkbox' 
+                                class='updatebutton' checked id='updatebutton' data-id='$r[id]'>
+                                <span class='sliderround'></span></div></td> ";}
+                                else {
+                                    echo " <td>
+                                <div class='togglebutton'>
+                                <input type='checkbox' 
+                                class='updatebutton' id='updatebutton' data-id='$r[id]'>
+                                <span class='sliderround'></span></div></td> ";}
+                                echo " </tr> ";
                                 }
                             } else
                                 echo "No entries in menu";
+
+                                $conn->close();
 
                             ?>
                         </tbody>
@@ -88,11 +93,10 @@ if (!(isset($_SESSION['username']))) {
     2.update availabilty to 1 on every successful logout of canteen
     3. add row in table
     4. add canteen on off in table */
-        $("#updatebutton").click(function(event) {
+    $('.updatebutton').click(function(event) {
             var status;
-            var itemid = $(this).data("id");
+            var itemid = $(this).data('id');
             var mainParent = $(this).parent('.togglebutton');
-
             if ($(mainParent).find('input.updatebutton').is(':checked')) {
                 status = 1;
                 $(mainParent).addClass('active');

@@ -158,8 +158,8 @@ var shoppingCart = (function() {
             alert("Hello");
           }
       }
-  })
-  })
+  });
+  });
   
     $('.show-cart').on("click", ".delete-item", function(event) {
     var name = $(this).data('name')
@@ -187,4 +187,7 @@ var shoppingCart = (function() {
   });
   
   displayCart();
+  /* update: checked
+  allorder: "no order found"
+  ordersummary: database */
   

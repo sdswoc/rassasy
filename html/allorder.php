@@ -43,6 +43,7 @@ if (!(isset($_SESSION['username']))) {
                     <table id='ordertable' border='1'>
                     <thead>
                         <tr>
+                            <td>Order ID</td>
                             <td>Item No</td>
                             <td>Item Name</td>
                             <td>Quantity</td>
@@ -56,8 +57,8 @@ if (!(isset($_SESSION['username']))) {
                     <tbody>
                     ";
             while ($r = $result->fetch_assoc()) {
-                echo $r['orderid'];
                 echo " <tr class='table_entry'>
+                                <td class='table_data'>$r[orderid]</td>
                                 <td class='table_data'>$r[itemno]</td>
                                 <td class='table_data'>$r[itemname]</td>
                                 <td class='table_data'>$r[count]</td>
@@ -68,10 +69,13 @@ if (!(isset($_SESSION['username']))) {
                                 <td class='table_data'>$r[status]</td>
                                 </tr> ";
             }
-        } else
-            echo " No past orders";
+        } 
+        else {
+            echo " No past orders"; }
             echo "</tbody>
             </table> " ;
+
+            $conn->close();
         ?>
     </div>
 </body>
