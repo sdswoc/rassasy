@@ -58,20 +58,19 @@ if (!(isset($_SESSION['username']))) {
                             if ($result->num_rows > 0) {
 
                                 while ($r = $result->fetch_assoc()) {
-                                    echo " if(r[availability]==1)
+                                if($r['availability']==1)
                                 $rcheck==true;
                                 else
                                 $rcheck==false;
+                                echo "
                                 <tr>
                                 <td>$r[id]</td>
                                 <td>$r[itemno]</td>
                                 <td>$r[itemname]</td>
                                 <td>
-                                <div class='toggle-btn active'>
-                                <input type='checkbox'  defaultChecked=$rcheck class='updatebutton' data-itemid='$r[id]' />
-                                <span class='round-btn'></span>
-                                </div>
-                                </td>
+                                <div class='togglebutton'>
+                                <input type='checkbox' class='updatebutton' data-id='$r[id]'>
+                                <span class='sliderround'></span></div></td>
                                 </tr> ";
                                 }
                             } else
@@ -91,8 +90,8 @@ if (!(isset($_SESSION['username']))) {
     4. add canteen on off in table */
         $("#updatebutton").click(function(event) {
             var status;
-            var itemid = $(this).data("itemid");
-            var mainParent = $(this).parent('.toggle-btn');
+            var itemid = $(this).data("id");
+            var mainParent = $(this).parent('.togglebutton');
 
             if ($(mainParent).find('input.updatebutton').is(':checked')) {
                 status = 1;

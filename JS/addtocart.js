@@ -139,24 +139,27 @@ var shoppingCart = (function() {
 
   $("#order-now").click(function() {
     var cartArray = shoppingCart.listCart();
+    console.log(cartArray);
     $.ajax({
       type: "post",
       url: "../php/ordersummary.php",
       data: {
-          cartArray,
-      },
+          cartArray
+                },
       success: function(response) {
           if (response==true) {
               alert("Order Succesfully Placed");
               clearCart();
               window.location.replace("../html/userhomepage.php");
 
-          } else {
+          } else if(response==false) {
               alert("Connection Error");
+          } else {
+            alert("Hello");
           }
       }
-  });
-  });
+  })
+  })
   
     $('.show-cart').on("click", ".delete-item", function(event) {
     var name = $(this).data('name')

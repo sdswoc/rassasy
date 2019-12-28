@@ -121,7 +121,7 @@ if (!(isset($_SESSION['username'])))
                     add_menu_data
                 },
                 success: function(response) {
-                    if (response) {
+                    if (response==true) {
                         alert("Saved to Menu");
                         inp1.value = inp2.value = inp3.value = '';
                     } else {

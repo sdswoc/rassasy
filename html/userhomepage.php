@@ -13,6 +13,8 @@ if (!(isset($_SESSION['username'])))
         Rassasy
     </title>
     <link rel="stylesheet" href="../css/userhomepage.css">
+    <script type="text/javascript" src="../JS/jquery-3.4.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
 
@@ -34,25 +36,31 @@ if (!(isset($_SESSION['username'])))
             <a href="../php/logout.php">Logout</a>
         </div>
         <div class="orders">
-            <div class="content"> Ongoing orders are displayed here:
+            <div class="content"> Ongoing orders are displayed here: <br />
             <?php
             include('../php/conn.php');
             $studentid=$_SESSION['id'];
-            $sql = "select * from canteen where status = '1'; ";
+            $sql = "select * from canteen where verified = '1'; ";
                 $result=$conn->query($sql);
                     if($result->num_rows>0){
                                 while($r=$result->fetch_assoc()){
                                     $canteenname = $r['canteenname'];
-                                    $findorder = "select * from order_$canteenname where student_id = '$studentid'; "; 
+                                    $findorder = "select * from order_$canteenname where student_id = '$studentid' and status = '0'; "; 
+                                    $result=$conn->query($findorder);
+                                    if($result->num_rows>0){
+                                while($r=$result->fetch_assoc()){
                                 echo " <tr class='table_entry'>
-                                <td class='table_data' id='canteenid'>$r[id]</td>
-                                <td class='table_data' id='canteenname'>$r[canteenname]</td>
-                                <td class='table_data'>$r[location]</td>
-                                <td><a href='ordermenu.php?canteenname=$r[canteenname]' />Order</td>
+                                <td class='table_data'>$canteenname</td>
+                                <td class='table_data'>$r[itemname]</td>
+                                <td class='table_data'>$r[count]</td>
+                                <td class='table_data'>$r[price]</td>
+                                <td class='table_data'>$r[total]</td>
+                                <td class='table_data'>$r[orderid]</td>
+                                <td class='table_data'>$r[status]</td>
                                 </tr> "; } 
-                            }
+                            }}}
                             else 
-                            echo " No Canteen Found";
+                            echo " No pending orders Found";
 
             
             ?>
