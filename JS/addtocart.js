@@ -149,7 +149,7 @@ var shoppingCart = (function() {
       success: function(response) {
           if (response==true) {
               alert("Order Succesfully Placed");
-              clearCart();
+              shoppingCart.clearCart();
               window.location.replace("../html/userhomepage.php");
 
           } else if(response==false) {

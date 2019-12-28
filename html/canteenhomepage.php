@@ -36,22 +36,41 @@ if (!(isset($_SESSION['username']))) {
         </div>
         <div class="orders">
             <div class="switch">Are you ready to open the shop?
-                <div class="togglebutton">
-                    <input type="checkbox" class="togglebtn" id="togglebtn">
-                    <span class="sliderround"></span>
-                </div>
+
+                <?php
+                include('../php/conn.php');
+                $canteenid = $_SESSION['id'];
+                $sql = "select * from canteen where id = '$canteenid'; ";
+                $result = $conn->query($sql);
+                if ($result->num_rows > 0) {
+                    while ($r = $result->fetch_assoc()) {
+                        if ($r['status'] == 0) {
+                            echo " <div class='togglebutton'>
+                                <input type='checkbox' class='togglebtn' id='togglebtn'>
+                                <span class='sliderround'></span>
+                            </div> ";
+                        } else {
+                            echo " <div class='togglebutton'>
+                                <input type='checkbox' checked class='togglebtn' id='togglebtn'>
+                                <span class='sliderround'></span>
+                            </div> ";
+                        }
+                    }
+                }
+                ?>
             </div>
             <div class="ongoingorders">
                 <?php
                 include('../php/conn.php');
                 $canteenname = $_SESSION['username'];
-                $sql = "select * from order_$canteenname where status = 0 group by orderid; ";
+                $sql = "select * from order_$canteenname where status = 0 ; ";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     echo "
                     <table id='ordertable' border='1'>
                     <thead>
                         <tr>
+                            <td>Order ID</td>
                             <td>Item No</td>
                             <td>Item Name</td>
                             <td>Quantity</td>
@@ -66,8 +85,8 @@ if (!(isset($_SESSION['username']))) {
                     <tbody>
                     ";
                     while ($r = $result->fetch_assoc()) {
-                        echo $r['orderid'];
                         echo " <tr class='table_entry'>
+                                <td class='table_data'>$r[orderid]</td>
                                 <td class='table_data'>$r[itemno]</td>
                                 <td class='table_data'>$r[itemname]</td>
                                 <td class='table_data'>$r[count]</td>
@@ -81,10 +100,10 @@ if (!(isset($_SESSION['username']))) {
                                 <span class='sliderround'></span></div></td>
                                 </tr> ";
                     }
+                    echo "</tbody>
+            </table> ";
                 } else
                     echo " No pending orders";
-                echo "</tbody>
-            </table> ";
                 $conn->close();
                 ?>
             </div>

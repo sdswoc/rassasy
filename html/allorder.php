@@ -32,15 +32,14 @@ if (!(isset($_SESSION['username']))) {
             <a href="update.php">Update</a>
             <a href="../php/logout.php">Logout</a>
         </div>
-        <div class="allorder"> All orders are displayed here.</div>
+        <div class="allorder"> All orders are displayed here.
         <?php
         include('../php/conn.php');
         $canteenname = $_SESSION['username'];
-        $sql = "select * from order_$canteenname group by orderid; ";
+        $sql = "select * from order_$canteenname ; ";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
-            echo "
-                    <table id='ordertable' border='1'>
+            echo "  <table id='pastordertable' border='1'>
                     <thead>
                         <tr>
                             <td>Order ID</td>
@@ -69,14 +68,15 @@ if (!(isset($_SESSION['username']))) {
                                 <td class='table_data'>$r[status]</td>
                                 </tr> ";
             }
-        } 
-        else {
-            echo " No past orders"; }
             echo "</tbody>
-            </table> " ;
+            </table> ";
+        } else {
+            echo " No past orders";
+        }
 
-            $conn->close();
+        $conn->close();
         ?>
+        </div>
     </div>
 </body>
 

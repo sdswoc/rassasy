@@ -168,6 +168,20 @@ div.content {
   padding: 10px 0;
 }
 
+table, thead, td ,th {
+  border: 1px solid black;
+}
+
+table{
+  border-collapse: collapse ;
+}
+
+.table-entry {
+  display: flex;
+  flex-direction: column;
+}
+
+
 
 @import url(https://fonts.googleapis.com/css?family=Ubuntu);
 

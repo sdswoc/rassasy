@@ -201,6 +201,22 @@ hr {
   margin-right: auto;
 }
 
+table, thead, td ,th {
+  border: 1px solid black;
+}
+
+table{
+  border-collapse: collapse ;
+  padding: 5px;
+}
+
+.table-entry {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+}
+
 .viewcart {
   background-color: #e7e7e7;
   color: black;
