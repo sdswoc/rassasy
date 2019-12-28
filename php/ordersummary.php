@@ -11,7 +11,7 @@ $canteenname = $_SESSION['canteenname'];
 $studentname = $_SESSION['name'];
 $studentmobile = $_SESSION['mobile'];
 $studentid = $_SESSION['id'];
-$takeid = "select * from order_$canteenname groupby 'orderid' DESC limit 1 ; ";
+$takeid = "select orderid from order_$canteenname order by 'orderid' DESC limit 1 ; ";
 if ($conn->query($takeid))
 {
     $result = $conn->query($sql);
