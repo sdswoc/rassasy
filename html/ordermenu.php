@@ -86,7 +86,7 @@ if (!(isset($_SESSION['username']))) {
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" class="order-now">Order now</button>
+                            <button type="button" class="btn btn-primary" id="order-now">Order now</button>
                         </div>
                     </div>
                 </div>
