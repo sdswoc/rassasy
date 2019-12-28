@@ -1,7 +1,7 @@
 var shoppingCart = (function() {
     cart = [];
     
-    function Item(name, price, count) { 
+    function Item(no, name, price, count) { 
       this.no = no
       this.name = name;
       this.price = price;
@@ -21,7 +21,7 @@ var shoppingCart = (function() {
   
     var obj = {};
     
-    obj.addItemToCart = function(name, price, count) {
+    obj.addItemToCart = function(no, name, price, count) {
       for(var item in cart) {
         if(cart[item].name === name) {
           cart[item].count ++;
@@ -29,7 +29,7 @@ var shoppingCart = (function() {
           return;
         }
       }
-      var item = new Item(name, price, count);
+      var item = new Item(no, name, price, count);
       cart.push(item);
       saveCart();
     }
@@ -105,9 +105,10 @@ var shoppingCart = (function() {
   
   $('.add-to-cart').click(function(event) {
     event.preventDefault();
+    var no = $(this).data('no');
     var name = $(this).data('name');
     var price = Number($(this).data('price'));
-    shoppingCart.addItemToCart(name, price, 1);
+    shoppingCart.addItemToCart(no, name, price, 1);
     displayCart();
   });
   
@@ -136,7 +137,7 @@ var shoppingCart = (function() {
     $('.total-count').html(shoppingCart.totalCount());
   }
 
-  $("#order-now").click(function(){
+  $('#order-now').click(function(){
     var cartArray = shoppingCart.listCart();
     $.ajax({
       type: "post",
@@ -154,26 +155,25 @@ var shoppingCart = (function() {
           }
       }
   });
-
-  })
+  });
   
     $('.show-cart').on("click", ".delete-item", function(event) {
     var name = $(this).data('name')
     shoppingCart.removeItemFromCartAll(name);
     displayCart();
-  })
+  });
   
   $('.show-cart').on("click", ".minus-item", function(event) {
     var name = $(this).data('name')
     shoppingCart.removeItemFromCart(name);
     displayCart();
-  })
+  });
 
   $('.show-cart').on("click", ".plus-item", function(event) {
     var name = $(this).data('name')
     shoppingCart.addItemToCart(name);
     displayCart();
-  })
+  });
   
   $('.show-cart').on("change", ".item-count", function(event) {
      var name = $(this).data('name');

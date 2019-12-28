@@ -20,6 +20,8 @@ if ($conn->query($takeid))
 else 
 $orderid = 0 ;
 
+$flag=false;
+
 foreach ($cartArray as $key => $row) {
     $itemno = $row['no'];
     $itemname = $row['name'];
@@ -29,4 +31,8 @@ foreach ($cartArray as $key => $row) {
     $sql = "insert into order_$canteenname(itemno, itemname, quantity, orderid, price, total, student_name, student_mobile, student_id, status)
     values ('$itemno','$itemname','$count','$orderid','$price','$total','$studentname','$studentmobile','$studentid','0') ;";
     if ($conn->query($sql)) {
-        $flag = true;
+        $flag=true ; }
+    }
+    echo $flag;
+$conn->close();
+?>
