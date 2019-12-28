@@ -40,22 +40,21 @@ if (!(isset($_SESSION['username']))) {
                 <?php
                 include('../php/conn.php');
                 $canteenid = $_SESSION['id'];
-                $sql = "select * from canteen where id = '$canteenid'; ";
+                $sql = "select status from canteen where id = '$canteenid'; ";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
-                    while ($r = $result->fetch_assoc()) {
-                        if ($r['status'] == 0) {
-                            echo " <div class='togglebutton'>
-                                <input type='checkbox' class='togglebtn' id='togglebtn'>
-                                <span class='sliderround'></span>
-                            </div> ";
-                        } else {
-                            echo " <div class='togglebutton'>
-                                <input type='checkbox' checked class='togglebtn' id='togglebtn'>
-                                <span class='sliderround'></span>
-                            </div> ";
-                        }
+                    $r = $result->fetch_assoc();
+                    if ($r['status'] == 1) {
+                        $active = "active";
+                        $checked = true;
+                    } else {
+                        $active = "";
+                        $checked = "";
                     }
+                    echo " <div class='togglebutton $active'>
+                        <input type='checkbox' class='togglebtn' id='togglebtn' defaultChecked=$checked >
+                        <span class='sliderround'></span>
+                    </div> ";
                 }
                 ?>
             </div>
