@@ -60,27 +60,58 @@ if (!(isset($_SESSION['username']))) {
                                 if ($result2->num_rows > 0) {
                                     while ($r2 = $result2->fetch_assoc()) {
                                         echo " <tr class='table_entry'>
-                                <td class='table_data'>$canteenname</td>
-                                <td class='table_data'>$r2[itemname]</td>
+                                <td class='table_data' name='canteenname'>$canteenname</td>
+                                <td class='table_data' name='itemname'>$r2[itemname]</td>
                                 <td class='table_data'>$r2[count]</td>
-                                <td class='table_data'>$r2[price]</td>
+                                <td class='table_data' name='price'>$r2[price]</td>
                                 <td class='table_data'>$r2[total]</td>
-                                <td class='table_data'>$r2[orderid]</td>
-                                <td class='table_data'>$r2[status]</td>
+                                <td class='table_data' name='orderid'>$r2[orderid]</td>
+                                <td class='table_data'name='status'>$r2[status]</td>
                                 </tr> ";
                                     }
                                 }
                             }
                         } else
                             echo " No pending orders Found";
-
-
                         ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+    <script>
+    window.onload(poll);
+    (function poll(){
+        $("#addtomenu").load(function(event) {
+            var canteenname_list = $("input[name='canteenname']");
+            var itemname_list = $("input[name='itemname']");
+            var orderid_list = $("input[name='orderid']");
+            var checkdata = [];
+            for (let i = 0; i < itemno_list.length; i++) {
+                var data_row = {
+                    'canteenname': itemno_list[i].value,
+                    'itemname': itemname_list[i].value,
+                    'orderid': orderid_list[i].value,
+                }
+                checkdata.push(data_row);
+        
+   setTimeout(function(){
+      $.ajax({ 
+          url: "../php/studentorderfetch.php",
+          data: checkdata,
+          success: function(data){
+        //Update your dashboard gauge
+
+        salesGauge.setValue(data.value);
+        //Setup the next poll recursively
+        poll();
+      }, dataType: "json"});
+  }, 30000);
+})();
+
+
+
+    </script>
 </body>
 
 </html>

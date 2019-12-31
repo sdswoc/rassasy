@@ -6,8 +6,6 @@ $id = $_SESSION['id'];
 $studentname = $_SESSION['name'];
 $studentmobile = $_SESSION['mobile'];
 $tablename = "order_$canteenname";
-$orderid = // global variable of canteenname
-// pass an object->foreach OR 
 $addtocartdata = $_POST['addtocartdata'];
 $flag = true;
 foreach ($addtocartdata as $key => $row) {

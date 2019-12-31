@@ -98,6 +98,7 @@ if (!(isset($_SESSION['username']))) {
                                 <input type='checkbox' class='updateorderstatus' data-id='$r[id]'>
                                 <span class='sliderround'></span></div></td>
                                 </tr> ";
+                                $last_order_id= $r['orderid'];
                     }
                     echo "</tbody>
             </table> ";
@@ -164,6 +165,38 @@ if (!(isset($_SESSION['username']))) {
                 }
             });
         });
+
+        function ongoingOrders(last_order_id = '<?php echo $last_order_id; ?>') {
+            setTimeout(function() {
+                var lastorderid;
+                $.ajax({
+                    type: "post",
+                    url: "../php/pendingorderfetch.php",
+                    data: {
+                        last_order_id
+                    },
+                    success: function(data) {
+                        if (data != false) {
+                            let resultData = JSON.parse(data);
+                            for (let key in resultData) {
+                                if ( resultData[key].orderid != last_order_id)
+                                {
+                                    $('#ordertable tr:last').after("<tr class='table_entry'><td class='table_data'>" + resultData[key].orderid + "</td><td class='table_data'>" + resultData[key].itemno + "</td><td class='table_data'>" + resultData[key].itemname + "</td><td class='table_data'>" + resultData[key].count + "</td><td class='table_data'>" + resultData[key].price + "</td><td class='table_data'>" + resultData[key].total + "</td><td class='table_data'>" + resultData[key].student_name + "</td><td class='table_data'>" + resultData[key].student_mobile + "</td><td class='table_data'>" + resultData[key].status + "</td><td class='table_data'><div class='togglebutton'><input type='checkbox' class='updateorderstatus' data-id='" + resultData[key].id + "'><span class='sliderround'></span></div></td></tr>")
+                                }
+                                lastorderid = resultData[key].orderid;
+                            }
+                            ongoingOrders(lastorderid);
+
+                        } else {
+                            ongoingOrders(lastorderid);
+                        }
+                    }
+                })
+            }, 5000)
+        }
+        $(window).on('load', function(e) {
+            ongoingOrders();
+        })
     </script>
 </body>
 
