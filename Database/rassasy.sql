@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 28, 2019 at 12:03 AM
+-- Generation Time: Jan 01, 2020 at 03:21 PM
 -- Server version: 5.7.28-0ubuntu0.18.04.4
 -- PHP Version: 7.2.24-0ubuntu0.18.04.1
 
@@ -125,12 +125,37 @@ CREATE TABLE `order_Jawahar_Night` (
 CREATE TABLE `order_Sarojini_Night` (
   `id` int(11) NOT NULL,
   `itemno` int(10) DEFAULT NULL,
-  `item_name` varchar(30) DEFAULT NULL,
+  `itemname` varchar(30) DEFAULT NULL,
+  `count` int(2) NOT NULL,
   `orderid` int(10) DEFAULT NULL,
+  `price` int(5) NOT NULL,
+  `total` int(5) NOT NULL,
   `student_name` varchar(20) DEFAULT NULL,
-  `student_mobile` int(10) DEFAULT NULL,
+  `student_mobile` varchar(15) DEFAULT NULL,
+  `student_id` int(10) NOT NULL,
   `status` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order_Sarojini_Night`
+--
+
+INSERT INTO `order_Sarojini_Night` (`id`, `itemno`, `itemname`, `count`, `orderid`, `price`, `total`, `student_name`, `student_mobile`, `student_id`, `status`) VALUES
+(1, 1, 'Tea', 1, 1, 10, 10, 'tina', '9999988888', 20, 1),
+(2, 2, 'Coffee', 1, 1, 15, 15, 'tina', '9999988888', 20, 1),
+(3, 1, 'Tea', 1, 1, 10, 10, 'tina', '9999988888', 20, 1),
+(4, 2, 'Coffee', 1, 1, 15, 15, 'tina', '9999988888', 20, 1),
+(5, 1, 'Tea', 1, 1, 10, 10, 'tina', '9999988888', 20, 1),
+(6, 2, 'Coffee', 1, 1, 15, 15, 'tina', '9999988888', 20, 1),
+(7, 1, 'Tea', 1, 1, 10, 10, 'tina', '9999988888', 20, 1),
+(8, 2, 'Coffee', 1, 1, 15, 15, 'tina', '9999988888', 20, 1),
+(9, 1, 'Tea', 1, 1, 10, 10, 'tina', '9999988888', 20, 1),
+(10, 2, 'Coffee', 1, 1, 15, 15, 'tina', '9999988888', 20, 1),
+(11, 2, 'Coffee', 1, 2, 15, 15, 'tina', '9999988888', 20, 1),
+(12, 2, 'Coffee', 3, 3, 15, 45, 'tina', '9999988888', 20, 0),
+(13, 1, 'Tea', 2, 4, 10, 20, 'tina', '9999988888', 20, 0),
+(14, 1, 'Tea', 2, 5, 10, 20, 'tina', '9999988888', 20, 0),
+(15, 1, 'Tea', 1, 6, 10, 10, 'tina', '9999988888', 20, 0);
 
 -- --------------------------------------------------------
 
@@ -255,7 +280,7 @@ ALTER TABLE `order_Jawahar_Night`
 -- AUTO_INCREMENT for table `order_Sarojini_Night`
 --
 ALTER TABLE `order_Sarojini_Night`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `student`
 --

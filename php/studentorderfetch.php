@@ -5,7 +5,7 @@ include('conn.php');
 $checkdata = $_POST['checkdata'];
 $data = [];
 
-foreach ($add_menu_data as $key => $row) {
+foreach ($checkdata as $key => $row) {
     $canteenname = $row['canteenname'];
     $itemname = $row['itemname'];
     $orderid = $row['orderid'];
@@ -25,4 +25,3 @@ foreach ($add_menu_data as $key => $row) {
   else
     echo json_encode($data);
   $conn->close();
-  ?>
