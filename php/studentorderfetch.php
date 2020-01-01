@@ -3,23 +3,26 @@ session_start();
 include('conn.php');
 
 $checkdata = $_POST['checkdata'];
+$data = [];
 
 foreach ($add_menu_data as $key => $row) {
     $canteenname = $row['canteenname'];
     $itemname = $row['itemname'];
     $orderid = $row['orderid'];
-    $tablename = 
+    $tablename = "order_$canteenname";
 
-    $sql = "insert into $tablename(itemno, itemname, price) values('$itemno','$itemname','$price');";
-    if ($conn->query($sql)) {
-        $flag = true;
-
-
-$sql = "update $tablename set availability = '$status'  where id = '$itemid';"; 
-    if ($conn->query($sql)) {
-        echo true;
-    }
-    else {
-        echo false ;
-    }
-$conn->close();
+    $sql = "select * from $tablename where orderid = $orderid;";
+    if ($result = $conn->query($sql)) {
+            while ($r = $result->fetch_assoc()) {
+                        if($r['status']==1) {
+                            array_push($data, $r);
+                        }
+                    }
+            }
+        }
+        if (empty($data))
+    echo false;
+  else
+    echo json_encode($data);
+  $conn->close();
+  ?>

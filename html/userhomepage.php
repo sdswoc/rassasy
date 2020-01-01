@@ -47,6 +47,7 @@ if (!(isset($_SESSION['username']))) {
                         <th> Status</th>
                     </tr>
                     <tbody>
+
                         <?php
                         include('../php/conn.php');
                         $studentid = $_SESSION['id'];
@@ -58,16 +59,18 @@ if (!(isset($_SESSION['username']))) {
                                 $findorder = "select * from order_$canteenname where student_id = '$studentid' and status = '0'; ";
                                 $result2 = $conn->query($findorder);
                                 if ($result2->num_rows > 0) {
+                                    //$first_order_id=
                                     while ($r2 = $result2->fetch_assoc()) {
-                                        echo " <tr class='table_entry'>
+                                        echo " <tr class='table_entry' class='$r[id]'>
                                 <td class='table_data' name='canteenname'>$canteenname</td>
                                 <td class='table_data' name='itemname'>$r2[itemname]</td>
                                 <td class='table_data'>$r2[count]</td>
                                 <td class='table_data' name='price'>$r2[price]</td>
                                 <td class='table_data'>$r2[total]</td>
                                 <td class='table_data' name='orderid'>$r2[orderid]</td>
-                                <td class='table_data'name='status'>$r2[status]</td>
+                                <td class='table_data' class='status'>$r2[status]</td>
                                 </tr> ";
+                                $last_order_id=$r['id'];
                                     }
                                 }
                             }
@@ -82,7 +85,6 @@ if (!(isset($_SESSION['username']))) {
     <script>
     window.onload(poll);
     (function poll(){
-        $("#addtomenu").load(function(event) {
             var canteenname_list = $("input[name='canteenname']");
             var itemname_list = $("input[name='itemname']");
             var orderid_list = $("input[name='orderid']");
@@ -99,15 +101,34 @@ if (!(isset($_SESSION['username']))) {
       $.ajax({ 
           url: "../php/studentorderfetch.php",
           data: checkdata,
-          success: function(data){
-        //Update your dashboard gauge
+          success: function(data) {
+                        if (data != false) {
+                            let resultData = JSON.parse(data);
+                            last_order_id = '<?php echo $last_order_id; ?>';
+                            first_order_id = '<?php echo $first_order_id; ?>';
+                            for (let key in resultData) 
+                                {
+                                    for(let id=first_order_id; id<=last_order_id; id++)
+                                    if(resultData[key].id==id)
+                                    {
+                                        (".id .status").html('');
+                                        (".id .status").html('Prepared');
+                                        alert(resultData[key].canteenname + resultData[key].orderid +resultData[key].itemname)  ;
 
-        salesGauge.setValue(data.value);
-        //Setup the next poll recursively
-        poll();
-      }, dataType: "json"});
-  }, 30000);
-})();
+
+                                    }                                     
+                                    
+                            }
+                            poll();
+
+                        } else {
+                            poll();
+                        }
+                    }
+                })
+            }, 5000)
+        } 
+        });
 
 
 

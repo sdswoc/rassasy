@@ -9,10 +9,10 @@
   $sql = "select * from $tablename where orderid>=$last_order_id order by orderid";
   $data = [];
 
-  if ($result = $conn->query($sql))
+  if ($result = $conn->query($sql)) {
     while ($r = $result->fetch_assoc()) {
       array_push($data, $r);
-    }
+    }}
   if (empty($data))
     echo false;
   else
