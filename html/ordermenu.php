@@ -44,10 +44,12 @@ if (!(isset($_SESSION['username']))) {
                         <th> Item No</th>
                         <th> Item Name</th>
                         <th> Price</th>
+                        <th> Rating</th>
                         <th>Order</th>
                     </tr>
                     <?php
                     include("../php/conn.php");
+                    include_once("../php/feedback.php");
                     $canteenname = $_GET['canteenname'];
                     $_SESSION['canteenname']=$canteenname;
                     $sql = "select * from menu_$canteenname where availability = '1';";
@@ -55,11 +57,12 @@ if (!(isset($_SESSION['username']))) {
                     if ($result->num_rows > 0) {
                         while ($r = $result->fetch_assoc()) {
                             echo "<tr class='table_entry'>
-                              <td class='table_data' id='itemno'>$r[itemno]</td>
+                              <td class='table_data' id='itemid'>$r[id]</td>
                               <td class='table_data' id='itemname'>$r[itemname]</td>
                               <td class='table_data' id='price'>$r[price]</td>
-                              <td class='table-data'>
-                              <a href='#' data-no='$r[itemno]' data-name='$r[itemname]' data-price='$r[price]' class='add-to-cart btn btn-primary'>Add to cart</a>
+                              <td class='table_data' id='rating'>$r[rating]</td>
+                             <td class='table-data'>
+                              <a href='#' data-no='$r[id]' data-name='$r[itemname]' data-price='$r[price]' class='add-to-cart btn btn-primary'>Add to cart</a>
                               </td>
                             </tr> ";
                         }

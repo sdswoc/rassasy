@@ -152,11 +152,9 @@ var shoppingCart = (function() {
               shoppingCart.clearCart();
               window.location.replace("../html/userhomepage.php");
 
-          } else if(response==false) {
-              alert("Connection Error");
           } else {
-            alert("Hello");
-          }
+              alert("Connection Error");
+          } 
       }
   });
   });

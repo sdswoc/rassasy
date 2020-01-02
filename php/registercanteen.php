@@ -11,17 +11,19 @@ $location = $_POST['location'];
 $openingtime = $_POST['openingtime'];
 $closingtime = $_POST['closingtime'];
 
-
 $sql = "insert into canteen(canteenname, canteenid, password, email, managername, mobile, location, openingtime, closingtime)
  values('$canteenname','$canteenid','$password_hash','$email','$managername','$mobile','$location','$openingtime','$closingtime')";
 
-$create_table_canteen_order = "create table order_$canteenname(id int primary key auto_increment, itemno int(10),
+$create_table_canteen_order = "create table order_$canteenname(id int primary key auto_increment, itemid int(10),
  itemname varchar(30),count int(2), orderid int(10),price int(5),total int(5), student_name varchar(20), student_mobile varchar(15), student_id int(10), status int(2));";
 
-$create_table_canteen_menu = "create table menu_$canteenname(id int primary key auto_increment,itemno int(10) unique,
-itemname varchar(30), price int(20), status int(2));";
+$create_table_canteen_menu = "create table menu_$canteenname(id int primary key auto_increment, itemno int(10) unique,
+itemname varchar(30), price int(20), rating int(5), status int(2));";
 
-if ($conn->query($sql) && $conn->query($create_table_canteen_menu) && $conn->query($create_table_canteen_order)) {
+$create_table_canteen_feedback = "create table feedback_$canteenname(id int primary key auto_increment, trackingid int(2), itemid varchar(5), orderid varchar(5),
+studentid varchar(5),rating int(2));" ;
+
+if ($conn->query($sql) && $conn->query($create_table_canteen_menu) && $conn->query($create_table_canteen_order) && $conn->query($create_table_canteen_feedback)) {
       echo true;
 } else {
       echo false;

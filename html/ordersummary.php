@@ -21,13 +21,13 @@ if ($result->num_rows > 0) {
 $flag = true;
 
 foreach ($cartArray as $key => $row) {
-    $itemno = $row['no'];
+    $itemid = $row['no'];
     $itemname = $row['name'];
     $count = $row['count'];
     $price = $row['price'];
     $total = $row['total'];
-    $sql = "insert into order_$canteenname (itemno, itemname, count, orderid, price, total, student_name, student_mobile, student_id, status)
-    values ('$itemno','$itemname','$count','$orderid','$price','$total','$studentname','$studentmobile','$studentid','0') ;";
+    $sql = "insert into order_$canteenname (itemid, itemname, count, orderid, price, total, student_name, student_mobile, student_id, status)
+    values ('$itemid','$itemname','$count','$orderid','$price','$total','$studentname','$studentmobile','$studentid','0') ;";
     if (!$conn->query($sql)) {
         $flag = false;
     }
