@@ -1,5 +1,5 @@
-CREATE DATABASE `rassasy` /*!40100 DEFAULT CHARACTER SET latin1 */
-USE rassasy
+CREATE DATABASE `rassasy`;
+USE rassasy;
 
 CREATE TABLE `student` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -16,7 +16,7 @@ CREATE TABLE `student` (
  UNIQUE KEY `enroll` (`enroll`),
  UNIQUE KEY `email` (`email`),
  UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
 
 CREATE TABLE `canteen` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -35,4 +35,4 @@ CREATE TABLE `canteen` (
  UNIQUE KEY `canteenname` (`canteenname`),
  UNIQUE KEY `canteenid` (`canteenid`),
  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ;
