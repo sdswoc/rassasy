@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Solway&display=swap');
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: thistle;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+ 
+.body {
+  width: 100%;
+  background-color: thistle;
+}
+
+/*.logo {
+    position: absolute;
+    padding-top: 25px;
+    padding-left: 25px;
+    width: 150px;
+    height: 150px;
+}*/
+
+/* The side navigation menu */
+
+.header {
+  font-family: Satisfy;
+  font-size: 70px;
+}
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 20%;
+  background-color: #e7e7e7;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  font-family: Satisfy;
+  font-size: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Sidebar links */
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+
+.sidebar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Links on mouse-over */
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {
+    float: left;
+  }
+  div.content {
+    margin-left: 0;
+  }
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+
+  .orders {
+    margin-left: 0 !important;
+  }
+
+  .allorder {
+    margin-left: 0 !important;
+  }
+
+  .menu {
+    margin-left: 0 !important;
+  }
+
+  .update {
+    margin-left: 0 !important;
+  }
+
+}
+
+.orders {
+  width: 80%;
+  height: 100%;
+  font-family: Solway;
+  text-align: center;
+  font-size: 40px;
+  margin-left: 20%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.allorder {
+  width: 70%;
+  height: 100%;
+  font-family: Solway;
+  text-align: center;
+  font-size: 40px;
+  margin-left: 30%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.menu {
+  width: 70%;
+  height: 100%;
+  font-family: Solway;
+  text-align: center;
+  font-size: 40px;
+  margin-left: 30%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+}
+
+.update {
+  width: 70%;
+  height: 100%;
+  font-family: Solway;
+  text-align: center;
+  font-size: 40px;
+  margin-left: 30%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}

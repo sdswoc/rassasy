@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Solway&display=swap");
+
+body {
+  margin: 0px;
+  padding: 0px;
+  background-image: url("../Images/bg.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  background-position: center;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.error {
+  font-size: 14px;
+  color: red;
+}
+
+@media screen and (max-width: 500px) {
+  .logo {
+    z-index: 1 !important;
+    position: fixed !important;
+    width: 30px !important;
+    height: 30px !important;
+    padding-left: 25px !important;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    width: 150px !important;
+  }
+
+  input[type="submit"] {
+    width: auto !important;
+    padding: 0 32px !important;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .header {
+    font-size: 36px !important;
+  }
+}
+.header {
+  width: 100%;
+  top: 40px;
+  text-align: center;
+  padding: 20px 50px;
+  box-sizing: border-box;
+  font-family: Satisfy;
+  font-size: 72px;
+  z-index: 1;
+}
+
+.body {
+  position: absolute;
+  width: 100%;
+}
+
+.logo {
+  position: fixed;
+  top: 25px;
+  padding-left: 50px;
+  width: 10vw;
+  height: 10vw;
+  align-self: left;
+}
+
+.registration {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-family: Solway;
+  padding: 12px 20px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 200px;
+  padding: 12px 20px;
+  margin: 20px 0;
+  box-sizing: border-box;
+  background-color: #e7e7e7;
+  border-radius: 8px;
+}
+
+input[type="submit"] {
+  text-decoration: none;
+  background-color: #e7e7e7;
+  color: black;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+  font-family: Solway;
+  height: 50px;
+  border: 2px solid rgba(00, 00, 00, 0.6);
+  box-shadow: 0px 2px 2px 2px rgba(00, 00, 00, 0.4);
+  align-content: center;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
