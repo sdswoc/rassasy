@@ -49,10 +49,10 @@ if (!(isset($_SESSION['username']))) {
                     </tr>
                     <?php
                     include("../php/conn.php");
-                    include_once("../php/feedback.php");
+                    // include_once("../php/feedback.php");
                     $canteenname = $_GET['canteenname'];
                     $_SESSION['canteenname']=$canteenname;
-                    $sql = "select * from menu_$canteenname where availability = '1';";
+                    $sql = "select * from menu_$canteenname where status = '1';";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while ($r = $result->fetch_assoc()) {

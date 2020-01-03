@@ -13,7 +13,7 @@ body {
 .body {
   width: 100%;
   background-color: thistle;
-  height: auto;
+  height: 100%;
 }
 
 /*.logo {

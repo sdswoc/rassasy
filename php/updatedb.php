@@ -7,7 +7,7 @@ $tablename = "menu_$canteenname";
 $itemid = $_POST['itemid'];
 $status = $_POST['status'];
 
-$sql = "update $tablename set availability = '$status'  where id = '$itemid';"; 
+$sql = "update $tablename set status = '$status'  where id = '$itemid';"; 
     if ($conn->query($sql)) {
         echo true;
     }

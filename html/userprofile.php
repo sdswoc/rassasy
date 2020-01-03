@@ -82,7 +82,6 @@ if (!(isset($_SESSION['username']))) {
             <div class="col-sm-10">
               <input type="text" disabled="true" class="form-control-plaintext" id="room" name="room" value="<?php echo $r[room]; ?>">
             </div>
-            <div>Password: <input type="password" name="password" id="p" /></div>
             <div><input type="button" value="Submit Changes" id="submitbutton" /></div>
           </form>
           <button class="editprofile" id="editprofile">Edit Profile</button>
@@ -181,13 +180,15 @@ if (!(isset($_SESSION['username']))) {
 
     $("#submitbutton").on("click", function() {
       var email = $("#email").val();
-      var password = $("#p").val();
       var bhawan = $("#bhawan").val();
       var room = $("#room").val();
       var mobile = $("#mobile").val();
       var name = $("#name").val();
       var username = $("#username").val();
       var enroll = $("#enroll").val();
+
+      var password = prompt("Please enter your password", "");
+
       // proceed with form submission
       $.ajax({
         url: "/php/edituserprofile.php",
@@ -205,27 +206,26 @@ if (!(isset($_SESSION['username']))) {
         success: function(response) {
           if (response == true) {
             alert("Updated");
-          } else 
-          alert("Error");
+          } else
+            alert("Error");
         }
       });
     });
 
-    $("#deleteaccount").on("click", function() {
-      $user = $_SESSION['id'];
-      $.ajax({
-        url: "/php/deleteaccount.php",
-        type: "post",
-        data: {
-          'user': user,
-        },
-        success: function(response) {
-          if (response == true) {
-            alert("Account Deleted");
-            window.location.replace("/html/login.html");
-          } else alert(response);
-        }
-      });
+    $("#deleteaccount").click(function() {
+      var editprofile = confirm("Are You Sure?");
+      if (editprofile) {
+        $.ajax({
+          url: "/php/deleteaccount.php",
+          type: "get",
+          success: function(response) {
+            if (response == true) {
+              alert("Account Deleted");
+              window.location.replace("/html/login.html");
+            } else alert(response);
+          }
+        });
+      }
     });
   </script>
 

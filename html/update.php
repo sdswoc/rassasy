@@ -57,7 +57,7 @@ if (!(isset($_SESSION['username']))) {
                             $result = $conn->query($sql);
                             if ($result->num_rows > 0) {
                                 while ($r = $result->fetch_assoc()) {
-                                    if ($r['availability'] == 1) {
+                                    if ($r['status'] == 1) {
                                         $active = "active";
                                         $checked = true;
                                     } else {
@@ -71,7 +71,7 @@ if (!(isset($_SESSION['username']))) {
                                 <td>$r[itemname]</td>   
                                 <td>                               
                                 <div class='togglebutton $active'>
-                                <input type='checkbox' class='updatebutton' id='updatebutton' defaultChecked=$checked data-id='$r[id]' >
+                                <input type='checkbox' class='updatebutton' id='updatebutton' data-id='$r[id]' defaultChecked=$checked  >
                                 <span class='sliderround'></span>
                                 </div> </td> ";
                                 }
@@ -91,6 +91,7 @@ if (!(isset($_SESSION['username']))) {
         $('.updatebutton').click(function(event) {
             var status;
             var itemid = $(this).data('id');
+            console.log(itemid);
             var mainParent = $(this).parent('.togglebutton');
             if ($(mainParent).find('input.updatebutton').is(':checked')) {
                 status = 1;

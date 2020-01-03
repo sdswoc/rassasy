@@ -7,7 +7,7 @@ $canteenname = $_SESSION['username'];
 $status = $_POST['status'];
 
 if ($status == 0) {
-    $check = "select * from order_$canteenname ;";
+    $check = "select * from order_$canteenname where status = 0 ;";
     $result = $conn->query($check);
     if ($result->num_rows > 0) {
         echo "Pending orders. Can't close canteen";

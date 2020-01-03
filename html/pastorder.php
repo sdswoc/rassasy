@@ -23,10 +23,10 @@ if (!(isset($_SESSION['username']))) {
         <div class='sidebar'>
             <div class='header'>Rassasy<br></div>
             <?php
-                session_start();
-                echo "Hey, ".$_SESSION['username'];
-                ?> </u>
-                <hr />
+            session_start();
+            echo "Hey, " . $_SESSION['username'];
+            ?> </u>
+            <hr />
             <a href='userhomepage.php'>Ongoing Orders</a>
             <a href='ordernow.php'>Order Now</a>
             <a href='pastorder.php'>Past Orders</a>
@@ -83,7 +83,7 @@ if (!(isset($_SESSION['username']))) {
                                     <td class='table_data'>$r2[orderid]</td>
                                     <td class='table_data'><div class='rating'>
                                     <form  class='form' action='/php/addfeedback.php' method='post'>
-                                    Rating (out of 5)<input type='text' name='rating' class='rating'>
+                                    Rating (out of 5)<input type='number' name='rating' class='rating' min='1' max='5'>
                                     <input type='hidden' name='canteenname' value='$canteenname'>
                                     <input type='hidden' name='trackingid' value='$r2[id]'>
                                     <input type='submit' name='submit' value='Submit'>
