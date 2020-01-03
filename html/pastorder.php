@@ -22,6 +22,11 @@ if (!(isset($_SESSION['username']))) {
     <div class='body'>
         <div class='sidebar'>
             <div class='header'>Rassasy<br></div>
+            <?php
+                session_start();
+                echo "Hey, ".$_SESSION['username'];
+                ?> </u>
+                <hr />
             <a href='userhomepage.php'>Ongoing Orders</a>
             <a href='ordernow.php'>Order Now</a>
             <a href='pastorder.php'>Past Orders</a>
@@ -39,7 +44,6 @@ if (!(isset($_SESSION['username']))) {
                     <th> Total</th>
                     <th> Order ID</th>
                     <th> Feedback</th>
-                    <th> Submit</th>
                 </tr>
                 <tbody>
                     <?php
@@ -68,7 +72,6 @@ if (!(isset($_SESSION['username']))) {
                                 <td class='table_data'><div class='rating'>
                                 Rating (out of 5) : <div>$r3[rating]</div>
                                 </div> </td>
-                                <td></td>
                                 </tr> ";
                                     } else {
                                         echo " <tr class='table_entry' id='$r2[id]'>
@@ -78,14 +81,14 @@ if (!(isset($_SESSION['username']))) {
                                     <td class='table_data'>$r2[price]</td>
                                     <td class='table_data'>$r2[total]</td>
                                     <td class='table_data'>$r2[orderid]</td>
-                                    <form class='feedback_add' action='../php/addfeedback.php' method='post'>
                                     <td class='table_data'><div class='rating'>
-                                    Rating (out of 5)<input type='text' name='rating' class='feedback_add'>
+                                    <form  class='form' action='/php/addfeedback.php' method='post'>
+                                    Rating (out of 5)<input type='text' name='rating' class='rating'>
                                     <input type='hidden' name='canteenname' value='$canteenname'>
                                     <input type='hidden' name='trackingid' value='$r2[id]'>
+                                    <input type='submit' name='submit' value='Submit'>
                                     </div> </td>
-                                    <td class='table_data'><input type='submit' name='submit' value='Submit'>
-                                    </td></form>                              
+                                    </form>                              
                                     </tr> ";
                                     }
                                 }

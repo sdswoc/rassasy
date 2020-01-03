@@ -26,10 +26,10 @@
     $router->post('/registrationuser', function() {
         include('./php/registeruser.php');
     });
-    $router->get('/user', function() {
+    $router->get('/userhomepage', function() {
         include('./html/userhomepage.php');
     });
-    $router->post('/user', function() {
-        include('./php/.php');
+    $router->get('/canteenhomepage', function() {
+        include('./html/canteenhomepage.php');
     });
 ?>

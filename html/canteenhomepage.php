@@ -36,7 +36,6 @@ if (!(isset($_SESSION['username']))) {
         </div>
         <div class="orders">
             <div class="switch">Are you ready to open the shop?
-
                 <?php
                 include('../php/conn.php');
                 $canteenid = $_SESSION['id'];
@@ -98,7 +97,7 @@ if (!(isset($_SESSION['username']))) {
                                 <input type='checkbox' class='updateorderstatus' data-id='$r[id]'>
                                 <span class='sliderround'></span></div></td>
                                 </tr> ";
-                                $last_order_id= $r['orderid'];
+                        $last_order_id = $r['orderid'];
                     }
                     echo "</tbody>
             </table> ";
@@ -132,11 +131,10 @@ if (!(isset($_SESSION['username']))) {
                         alert("Updated");
                     } else {
                         alert(response);
-                        if(status==1) {
+                        if (status == 1) {
                             $(mainParent).removeClass('active');
                             $("#togglebtn").prop("checked", false);
-                        }
-                        else {
+                        } else {
                             $(mainParent).addClass('active');
                             $("#togglebtn").prop("checked", true);
                         }
@@ -187,8 +185,7 @@ if (!(isset($_SESSION['username']))) {
                         if (data != false) {
                             let resultData = JSON.parse(data);
                             for (let key in resultData) {
-                                if ( resultData[key].orderid != last_order_id)
-                                {
+                                if (resultData[key].orderid != last_order_id) {
                                     $('#ordertable tr:last').after("<tr class='table_entry'><td class='table_data'>" + resultData[key].orderid + "</td><td class='table_data'>" + resultData[key].itemno + "</td><td class='table_data'>" + resultData[key].itemname + "</td><td class='table_data'>" + resultData[key].count + "</td><td class='table_data'>" + resultData[key].price + "</td><td class='table_data'>" + resultData[key].total + "</td><td class='table_data'>" + resultData[key].student_name + "</td><td class='table_data'>" + resultData[key].student_mobile + "</td><td class='table_data'>" + resultData[key].status + "</td><td class='table_data'><div class='togglebutton'><input type='checkbox' class='updateorderstatus' data-id='" + resultData[key].id + "'><span class='sliderround'></span></div></td></tr>")
                                 }
                                 lastorderid = resultData[key].orderid;

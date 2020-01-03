@@ -50,7 +50,7 @@ include('conn.php');
         if ($conn->query($sql) == true) {
           echo true;
         }
-        $conn->close();}
+        }
         else
         echo "wrong password"; 
       } 
@@ -59,4 +59,5 @@ include('conn.php');
 
         }
       }
+      $conn->close();
 ?>
