@@ -159,7 +159,7 @@ body {
   padding: 0 80px;
 }
 
-.deleteaccount {
+.deleteaccount , .editprofile {
   width: 180px;
   background-color: #e7e7e7;
   color: black;

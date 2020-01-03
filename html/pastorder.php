@@ -54,27 +54,40 @@ if (!(isset($_SESSION['username']))) {
                             $result2 = $conn->query($findorder);
                             if ($result2->num_rows > 0) {
                                 while ($r2 = $result2->fetch_assoc()) {
-                                    echo " <tr class='table_entry'>
+                                    $feedback = "select * from feedback_$canteenname where trackingid = '$r2[id]' ;";
+                                    $result3 = $conn->query($feedback);
+                                    if ($result3->num_rows > 0) {
+                                        $r3 = $result3->fetch_assoc();
+                                        echo " <tr class='table_entry' id='$r2[id]'>
                                 <td class='table_data'>$canteenname</td>
                                 <td class='table_data'>$r2[itemname]</td>
                                 <td class='table_data'>$r2[count]</td>
                                 <td class='table_data'>$r2[price]</td>
                                 <td class='table_data'>$r2[total]</td>
                                 <td class='table_data'>$r2[orderid]</td>
-                                <td class='table_data'><div class='star-rating'>
-                                <input type='radio' id='5-stars' name='rating' value='5' />
-                                <label for='5-stars' class='star'>&#9733;</label>
-                                <input type='radio' id='4-stars' name='rating' value='4' />
-                                <label for='4-stars' class='star'>&#9733;</label>
-                                <input type='radio' id='3-stars' name='rating' value='3' />
-                                <label for='3-stars' class='star'>&#9733;</label>
-                                <input type='radio' id='2-stars' name='rating' value='2' />
-                                <label for='2-stars' class='star'>&#9733;</label>
-                                <input type='radio' id='1-star' name='rating' value='1' />
-                                <label for='1-star' class='star'>&#9733;</label>
+                                <td class='table_data'><div class='rating'>
+                                Rating (out of 5) : <div>$r3[rating]</div>
                                 </div> </td>
-                                <td class='table_data'><input type='button' value='Submit' id='submitbutton' data-id='$r2[id]' data-name='$canteenname' /></td>                              
+                                <td></td>
                                 </tr> ";
+                                    } else {
+                                        echo " <tr class='table_entry' id='$r2[id]'>
+                                    <td class='table_data'>$canteenname</td>
+                                    <td class='table_data'>$r2[itemname]</td>
+                                    <td class='table_data'>$r2[count]</td>
+                                    <td class='table_data'>$r2[price]</td>
+                                    <td class='table_data'>$r2[total]</td>
+                                    <td class='table_data'>$r2[orderid]</td>
+                                    <form class='feedback_add' action='../php/addfeedback.php' method='post'>
+                                    <td class='table_data'><div class='rating'>
+                                    Rating (out of 5)<input type='text' name='rating' class='feedback_add'>
+                                    <input type='hidden' name='canteenname' value='$canteenname'>
+                                    <input type='hidden' name='trackingid' value='$r2[id]'>
+                                    </div> </td>
+                                    <td class='table_data'><input type='submit' name='submit' value='Submit'>
+                                    </td></form>                              
+                                    </tr> ";
+                                    }
                                 }
                             }
                         }
@@ -86,20 +99,42 @@ if (!(isset($_SESSION['username']))) {
         </div>
     </div>
     <script>
-        $("#submitbutton").click(function(event) {
-          var rating = $('input[name=rating]:checked').val();
-          var trackingid = $(this).data('id'); 
-          var canteenname = $(this).data('name'); 
-          $.ajax({
-              type: "post",
-              url: "../php/addfeedback.php",
-              data: {
-                  'rating': rating,
-                  'trackingid': trackingid,
-                  'canteenname': canteenname
+        /* $("#rate").keyup(function(event) {
+            var trackingid = $(this).data('id');
+            var Row = document.getElementById(trackingid);
+            var Cells = Row.getElementsByTagName("");
+            var rating = alert(Cells[0].innerText);
+            console.log(rating);
 
-              },
-              success: function(response) {
+            if (rating < 1 || rating > 5) {
+                alert("Invalid Rating");
+                event.preventDefault;
+                var rating = $("input[name='rate']").val("");
+            }
+        });
+
+        $("#submitbutton").click(function(event) {
+            var trackingid = $(this).data('id');
+            var canteenname = $(this).data('name');
+            /* var rating = $("input[name='rate']").value;
+            var table_row_list = $(".table_entry");
+            for (let i = 0; i < table_row_list.length; i++) {
+                if (trackingid == table_row_list[i].id) {
+                    var rating = $("input[name='rate']").value; 
+            var Row = document.getElementById(trackingid);
+            var Cells = Row.getElementsByTagName("input");
+            var rating = alert(Cells[0].innerText);
+
+            $.ajax({
+                type: "post",
+                url: "../php/addfeedback.php",
+                data: {
+                    'rating': rating,
+                    'trackingid': trackingid,
+                    'canteenname': canteenname
+
+                },
+                success: function(response) {
                     if (response == true) {
                         alert("Feedback added!");
                         //$('form input[type="button"]').prop("disabled", true);
@@ -108,9 +143,9 @@ if (!(isset($_SESSION['username']))) {
                     } else {
                         alert("Connection Error");
                     }
-              }
-          })
-        });
+                }
+            })
+        }); */
     </script>
 </body>
 

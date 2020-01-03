@@ -49,7 +49,7 @@ if (!(isset($_SESSION['username']))) {
                         $checked = true;
                     } else {
                         $active = "";
-                        $checked = "";
+                        $checked = false;
                     }
                     echo " <div class='togglebutton $active'>
                         <input type='checkbox' class='togglebtn' id='togglebtn' defaultChecked=$checked >
@@ -70,7 +70,7 @@ if (!(isset($_SESSION['username']))) {
                     <thead>
                         <tr>
                             <td>Order ID</td>
-                            <td>Item No</td>
+                            <td>Item ID</td>
                             <td>Item Name</td>
                             <td>Quantity</td>
                             <td>Price</td>
@@ -86,7 +86,7 @@ if (!(isset($_SESSION['username']))) {
                     while ($r = $result->fetch_assoc()) {
                         echo " <tr class='table_entry'>
                                 <td class='table_data'>$r[orderid]</td>
-                                <td class='table_data'>$r[itemno]</td>
+                                <td class='table_data'>$r[itemid]</td>
                                 <td class='table_data'>$r[itemname]</td>
                                 <td class='table_data'>$r[count]</td>
                                 <td class='table_data'>$r[price]</td>
@@ -131,7 +131,15 @@ if (!(isset($_SESSION['username']))) {
                     if (response == true) {
                         alert("Updated");
                     } else {
-                        alert("Connection Error");
+                        alert(response);
+                        if(status==1) {
+                            $(mainParent).removeClass('active');
+                            $("#togglebtn").prop("checked", false);
+                        }
+                        else {
+                            $(mainParent).addClass('active');
+                            $("#togglebtn").prop("checked", true);
+                        }
                     }
                 }
             });

@@ -1,5 +1,4 @@
 <?php
-session_start();
 include('conn.php');
 session_start();
 $id=$_SESSION['id'];
@@ -8,13 +7,14 @@ $trackingid=$_POST['trackingid'];
 $canteenname=$_POST['canteenname'];
 
 $check = "select * order_$canteenname where id = $trackingid ;";
+var_dump($check);
 if($result = $conn->query($check)) {
     while ($r = $result->fetch_assoc()) {
         $itemid = $r['itemid'];
         $studentid = $r['student_id'];
         $orderid = $r['orderid'];
-        $sql = "insert into feedback_$canteenname(trackingid, itemid, orderid, studentid, rating, check)
-         values('$trackingid','$itemid','$orderid','$studentid',$rating,'1' ) ;";
+        $sql = "insert into feedback_$canteenname(trackingid, itemid, orderid, studentid, rating)
+         values('$trackingid','$itemid','$orderid','$studentid',$rating) ;";
          if ($conn->query($sql)) {
             echo true;
      }
@@ -22,5 +22,6 @@ if($result = $conn->query($check)) {
        echo false ;
      } 
     }}
+    header( "Location: ../html/pastorder.php" );
     $conn->close();
     ?>

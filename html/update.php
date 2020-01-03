@@ -88,10 +88,6 @@ if (!(isset($_SESSION['username']))) {
         </div>
     </div>
     <script>
-        /* 1.check for on off of checkbox button. update availability acc
-    2.update availabilty to 1 on every successful logout of canteen
-    3. add row in table
-    4. add canteen on off in table */
         $('.updatebutton').click(function(event) {
             var status;
             var itemid = $(this).data('id');

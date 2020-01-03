@@ -105,7 +105,7 @@
     </div>
 
     <script>
-      let checkvariable = [0, 0, 0, 0];
+      let checkvariable = [0, 0, 0, 0, 0];
 
       $("#enroll").blur(function(event) {
         var input = "enroll";
@@ -138,6 +138,13 @@
         var input = "username";
         var inputvalue = $("#username").val();
         let tablename = "student";
+        var reWhiteSpace = new RegExp("/^\s+$/");
+
+        // Check for white space
+        if (reWhiteSpace.test(inputvalue)) {
+          checkvariable[1] = 1;
+        } else {
+        alert("Please Check Your Username For Spaces"); }
 
         $.ajax({
           type: "post",
@@ -151,7 +158,7 @@
               alert("username Already Exists");
             } else {
               $("#username_result").empty();
-              checkvariable[1] = 1;
+              checkvariable[2] = 1;
             }
           }
         });
@@ -168,7 +175,7 @@
           } else {
             var msg = "Passwords match".fontcolor("green");
             document.getElementById("pass").innerHTML = msg;
-            checkvariable[2] = 1;
+            checkvariable[3] = 1;
           }
         }
       }
@@ -190,7 +197,7 @@
               alert("Email Already Exists");
             } else {
               $("#email_result").empty();
-              checkvariable[3] = 1;
+              checkvariable[4] = 1;
             }
           }
         });
@@ -211,6 +218,8 @@
         if (checkvariable[0] == 0 || checkvariable[1] == 0) {
           $("#error").text("Fix the errors in the form first");
         } else if (checkvariable[2] == 0 || checkvariable[3] == 0) {
+          $("#error").text("Fix the errors in the form first");
+        } else if (checkvariable[5] == 0) {
           $("#error").text("Fix the errors in the form first");
         } else {
           // proceed with form submission

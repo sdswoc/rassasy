@@ -40,27 +40,26 @@ if (!(isset($_SESSION['username']))) {
           $r = $conn->query("select * from student where username='$_SESSION[username]'");
           $r = $r->fetch_assoc();
           ?>
-          <a href='#' id="edit_profile">Edit Account Settings</a>
           <form class="form">
             <label class="col-sm-2 col-form-label">Name</label>
             <div class="col-sm-10">
-              <input type="text" disabled="true" class="form-control-plaintext" name="name" value="<?php echo $r[name]; ?>">
+              <input type="text" disabled="true" class="form-control-plaintext" id="name" name="name" value="<?php echo $r[name]; ?>">
             </div>
             <label class="col-sm-2 col-form-label">Username</label>
             <div class="col-sm-10">
-              <input type="text" disabled="true" class="form-control-plaintext" name="name" value="<?php echo $r[username]; ?>">
+              <input type="text" disabled="true" class="form-control-plaintext" id="username" name="username" value="<?php echo $r[username]; ?>">
             </div>
             <label class="col-sm-2 col-form-label">Enrollment Number</label>
             <div class="col-sm-10">
-              <input type="text" disabled="true" class="form-control-plaintext" name="name" value="<?php echo $r[enroll]; ?>">
+              <input type="text" disabled="true" class="form-control-plaintext" id="enroll" name="enroll" value="<?php echo $r[enroll]; ?>">
             </div>
             <label class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-              <input type="text" disabled="true" class="form-control-plaintext" name="name" value="<?php echo $r[email]; ?>">
+              <input type="email" disabled="true" class="form-control-plaintext" id="email" name="email" value="<?php echo $r[email]; ?>">
             </div>
             <label class="col-sm-2 col-form-label">Mobile Number</label>
             <div class="col-sm-10">
-              <input type="text" disabled="true" class="form-control-plaintext" name="name" value="<?php echo $r[mobile]; ?>">
+              <input type="text" disabled="true" class="form-control-plaintext" id="mobile" name="mobile" value="<?php echo $r[mobile]; ?>">
             </div>
             <label class="col-sm-2 col-form-label">Bhawan</label>
             <div class="col-sm-10">
@@ -81,21 +80,22 @@ if (!(isset($_SESSION['username']))) {
             </div>
             <label class="col-sm-2 col-form-label">Room</label>
             <div class="col-sm-10">
-              <input type="text" disabled="true" class="form-control-plaintext" name="name" value="<?php echo $r[room]; ?>">
+              <input type="text" disabled="true" class="form-control-plaintext" id="room" name="room" value="<?php echo $r[room]; ?>">
             </div>
             <div>Password: <input type="password" name="password" id="p" /></div>
             <div><input type="button" value="Submit Changes" id="submitbutton" /></div>
           </form>
+          <button class="editprofile" id="editprofile">Edit Profile</button>
           <button class="deleteaccount" id="deleteaccount">Delete Account</button>
         </div>
       </div>
     </div>
   </div>
   <script>
-    $("#edit_profile").click(function(event) {
+    $("#editprofile").click(function(event) {
       event.preventDefault();
-      var edit_profile = confirm("Are You Sure");
-      if (edit_profile) {
+      var editprofile = confirm("Are You Sure?");
+      if (editprofile) {
         $("input").removeAttr("disabled");
         $("select").removeAttr("disabled");
         $("#submit").removeAttr("hidden", "hidden");

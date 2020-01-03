@@ -13,11 +13,11 @@ $name=$_POST['name'];
 $username=$_POST['username'];
 $password_hash = hash('sha256', $password);
 
+$check = "select * from student where id = $id ;";
 if($result = $conn->query($check)) {
     while ($r = $result->fetch_assoc()) {
         if ($password_hash==$r['password']) {
-$sql="update student set mobile=$mobile, bhawan=$bhawan, room=$room, email=$email, name=$name, username=$username, enroll=$enroll where id=$id;";
-var_dump($sql);
+$sql="update student set mobile='$mobile', bhawan='$bhawan', room='$room', email='$email', name='$name', username='$username', enroll='$enroll' where id='$id';";
 if ($conn->query($sql)) {
        echo true;
 }}}}
