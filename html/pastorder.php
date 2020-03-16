@@ -88,7 +88,7 @@ if (!(isset($_SESSION['username']))) {
                                     <input type='hidden' name='trackingid' value='$r2[id]'>
                                     <input type='submit' name='submit' value='Submit'>
                                     </div> </td>
-                                    </form>                              
+                                    </form>
                                     </tr> ";
                                     }
                                 }
@@ -101,55 +101,6 @@ if (!(isset($_SESSION['username']))) {
             </table>
         </div>
     </div>
-    <script>
-        /* $("#rate").keyup(function(event) {
-            var trackingid = $(this).data('id');
-            var Row = document.getElementById(trackingid);
-            var Cells = Row.getElementsByTagName("");
-            var rating = alert(Cells[0].innerText);
-            console.log(rating);
-
-            if (rating < 1 || rating > 5) {
-                alert("Invalid Rating");
-                event.preventDefault;
-                var rating = $("input[name='rate']").val("");
-            }
-        });
-
-        $("#submitbutton").click(function(event) {
-            var trackingid = $(this).data('id');
-            var canteenname = $(this).data('name');
-            /* var rating = $("input[name='rate']").value;
-            var table_row_list = $(".table_entry");
-            for (let i = 0; i < table_row_list.length; i++) {
-                if (trackingid == table_row_list[i].id) {
-                    var rating = $("input[name='rate']").value; 
-            var Row = document.getElementById(trackingid);
-            var Cells = Row.getElementsByTagName("input");
-            var rating = alert(Cells[0].innerText);
-
-            $.ajax({
-                type: "post",
-                url: "../php/addfeedback.php",
-                data: {
-                    'rating': rating,
-                    'trackingid': trackingid,
-                    'canteenname': canteenname
-
-                },
-                success: function(response) {
-                    if (response == true) {
-                        alert("Feedback added!");
-                        //$('form input[type="button"]').prop("disabled", true);
-                        //this.disabled = true;
-                        //$("#submitbutton").attr("disabled", true);
-                    } else {
-                        alert("Connection Error");
-                    }
-                }
-            })
-        }); */
-    </script>
 </body>
 
 </html>
