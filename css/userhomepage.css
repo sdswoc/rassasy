@@ -13,6 +13,7 @@ body {
 .body {
   width: 100%;
   background-color: thistle;
+  height: 100%;
 }
 
 /*.logo {
@@ -144,6 +145,14 @@ body {
   align-content: space-between;
   display: flex;
   flex-direction: column;
+  padding: 2px;
+}
+
+.formfeedback {
+  align-content: space-between;
+  display: flex;
+  flex-direction: row;
+  padding: 2px;
 }
 
 .canteenselection {
@@ -158,7 +167,7 @@ body {
   padding: 0 80px;
 }
 
-.deleteaccount {
+.deleteaccount , .editprofile {
   width: 180px;
   background-color: #e7e7e7;
   color: black;
@@ -199,6 +208,22 @@ hr {
   border-width: 1px;
   margin-left: auto;
   margin-right: auto;
+}
+
+table, thead, td ,th {
+  border: 1px solid black;
+}
+
+table{
+  border-collapse: collapse ;
+  padding: 5px;
+}
+
+.table-entry {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
 }
 
 .viewcart {
@@ -295,7 +320,7 @@ input[type="email"] {
   font-size: 20px;
 }
 
-input[type="submit"] {
+input[type="button"] {
   width: auto;
   text-decoration: none;
   background-color: #e7e7e7;
@@ -310,4 +335,34 @@ input[type="submit"] {
   align-content: center;
   box-sizing: border-box;
   border-radius: 8px;
+  
+}
+
+.star-rating {
+  border:solid 1px #ccc;
+  display:flex;
+  flex-direction: row-reverse;
+  font-size:1.5em;
+  justify-content:space-around;
+  padding:0 .2em;
+  text-align:center;
+  width:5em;
+}
+
+.star-rating input {
+  display:none;
+}
+
+.star-rating label {
+  color:#ccc;
+  cursor:pointer;
+}
+
+.star-rating :checked ~ label {
+  color:#f90;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color:#fc0;
 }

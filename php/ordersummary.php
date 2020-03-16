@@ -3,7 +3,7 @@ session_start();
 if (!(isset($_SESSION['username']))) {
     header("Location: ../html/login.html");
 }
-include('../php/conn.php');
+include('conn.php');
 
 $cartArray = $_POST['cartArray'];
 $canteenname = $_SESSION['canteenname'];
@@ -18,7 +18,7 @@ if ($result->num_rows > 0) {
 } else
     $orderid = 1;
 
-$flag = true;
+$flag = false;
 
 foreach ($cartArray as $key => $row) {
     $itemid = $row['no'];
@@ -26,10 +26,10 @@ foreach ($cartArray as $key => $row) {
     $count = $row['count'];
     $price = $row['price'];
     $total = $row['total'];
-    $sql = "insert into order_$canteenname (itemid, itemname, count, orderid, price, total, student_name, student_mobile, student_id, status)
+    $sql = "insert into order_$canteenname(itemid, itemname, count, orderid, price, total, student_name, student_mobile, student_id, status)
     values ('$itemid','$itemname','$count','$orderid','$price','$total','$studentname','$studentmobile','$studentid','0') ;";
-    if (!$conn->query($sql)) {
-        $flag = false;
+    if ($conn->query($sql)) {
+        $flag = true;
     }
 }
 echo $flag;
